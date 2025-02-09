@@ -1,7 +1,5 @@
 'use client'
 
-
-
 export default function Error({
   error,
   reset,
@@ -11,10 +9,9 @@ export default function Error({
 }) {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="text-center"
+      <div
+        className="text-center opacity-0 scale-95 animate-fade-in"
+        style={{ animation: 'fadeIn 0.3s ease-out forwards' }}
       >
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
           Something went wrong!
@@ -28,7 +25,7 @@ export default function Error({
         >
           Try again
         </button>
-      </motion.div>
+      </div>
     </div>
   )
 }

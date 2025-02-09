@@ -83,7 +83,7 @@ export default function About() {
               <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/50" />
               <div className="absolute bottom-4 left-4 right-4 text-text">
                 <blockquote className="text-lg italic font-light">
-                  "Through my art, I explore the intersection of cultural identity, technology, and tradition."
+                  &ldquo;Through my art, I explore the intersection of cultural identity, technology, and tradition.&rdquo;
                 </blockquote>
               </div>
             </div>
@@ -157,9 +157,9 @@ export default function About() {
               the line between fantasy, the virtual, and the human.
             </p>
             <blockquote className="border-l-4 border-secondary_accent pl-4 italic text-white/80">
-              “I’m like a scuba diver who dives into the abyss of my subconscious... 
+              &ldquo;I&rsquo;m like a scuba diver who dives into the abyss of my subconscious... 
               Life only has value if shared. Art is about relationships, multi-layered...
-              My art is open to all.”
+              My art is open to all.&rdquo;
             </blockquote>
             <p>
               His forward-moving practice envisions a future that is both expansive and inclusive, 

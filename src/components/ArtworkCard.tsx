@@ -1,5 +1,5 @@
 'use client'
-import { useState, KeyboardEvent, useEffect } from 'react'
+import { useState, KeyboardEvent } from 'react'
 import ImageWithFallback from './ImageWithFallback'
 
 interface ArtworkCardProps {
@@ -18,11 +18,6 @@ export default function ArtworkCard({
   const [isHovered, setIsHovered] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isFocused, setIsFocused] = useState(false)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
 
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -54,7 +49,6 @@ export default function ArtworkCard({
         <ImageWithFallback
           src={image}
           alt={title}
-          fill
           priority
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="!relative !h-full !w-full object-cover transition-transform duration-300 group-hover:scale-105"

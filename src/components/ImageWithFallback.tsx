@@ -5,7 +5,6 @@ import { useState } from 'react'
 interface ImageWithFallbackProps {
   src: string
   alt: string
-  fill?: boolean
   className?: string
   onLoadingComplete?: () => void
   priority?: boolean
@@ -16,7 +15,6 @@ interface ImageWithFallbackProps {
 export default function ImageWithFallback({
   src,
   alt,
-  fill = false,
   className = '',
   onLoadingComplete,
   priority = false,
