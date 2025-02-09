@@ -111,7 +111,7 @@ export default function Home() {
               <span className="text-secondary_accent mx-3">•</span>
               <span className="opacity-90">Visual Storyteller</span>
             </p>
-            <div className="h-[120px] flex items-center justify-center backdrop-blur-sm bg-primary/20 rounded-lg">
+            <div className="h-[120px] flex items-center justify-center backdrop-blur-sm rounded-lg">
               <p
                 className={`text-xl sm:text-2xl text-text/90 italic max-w-2xl mx-auto px-6 transition-all duration-500 font-light animate__animated ${
                   isVisible ? 'animate__fadeIn animate__delay-2s' : ''
@@ -142,7 +142,7 @@ export default function Home() {
 
           {/* Locations with Enhanced Visual Effect */}
           <div className="mt-16 animate__animated animate__fadeIn animate__delay-2s">
-            <div className="inline-flex flex-wrap justify-center gap-4 text-text/70 text-base tracking-wider backdrop-blur-sm bg-primary/20 px-8 py-3 rounded-full">
+            <div className="inline-flex flex-wrap justify-center gap-4 text-text/70 text-base tracking-wider backdrop-blur-sm px-8 py-3 rounded-full">
               {['Geneva', 'Beijing', 'New York', 'Bali'].map((location, index) => (
                 <Fragment key={location}>
                   <span className="hover:text-secondary_accent transition-colors cursor-default">{location}</span>
