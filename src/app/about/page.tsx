@@ -1,6 +1,5 @@
 'use client'
 
-import { useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useInView } from 'react-intersection-observer'
