@@ -112,10 +112,12 @@ export default function Home() {
               <span className="opacity-90">Visual Storyteller</span>
             </p>
             <div className="h-[120px] flex items-center justify-center backdrop-blur-sm bg-primary/20 rounded-lg">
-              <p className={`text-xl sm:text-2xl text-text/90 italic max-w-2xl mx-auto px-6 transition-all duration-500 font-light animate__animated ${
-                isVisible ? 'animate__fadeIn animate__delay-2s' : ''
-              }`}>
-                "{artistQuotes[currentQuote]}"
+              <p
+                className={`text-xl sm:text-2xl text-text/90 italic max-w-2xl mx-auto px-6 transition-all duration-500 font-light animate__animated ${
+                  isVisible ? 'animate__fadeIn animate__delay-2s' : ''
+                }`}
+              >
+                &quot;{artistQuotes[currentQuote]}&quot;
               </p>
             </div>
           </div>
