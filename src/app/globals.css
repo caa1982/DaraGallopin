@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: theme('colors.primary.DEFAULT');
+  --text: theme('colors.text');
+  --primary: theme('colors.primary.DEFAULT');
+  --primary-light: theme('colors.primary.light');
+  --primary-dark: theme('colors.primary.dark');
+  --secondary: theme('colors.secondary.DEFAULT');
+  --secondary-light: theme('colors.secondary.light');
+  --secondary-dark: theme('colors.secondary.dark');
+  --accent: theme('colors.primary_accent.DEFAULT');
+  --accent-light: theme('colors.primary_accent.light');
+  --accent-dark: theme('colors.primary_accent.dark');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: theme('colors.primary.dark');
+    --text: theme('colors.text');
+    --primary: theme('colors.primary.DEFAULT');
+    --primary-light: theme('colors.primary.light');
+    --primary-dark: theme('colors.primary.dark');
+    --secondary: theme('colors.secondary.DEFAULT');
+    --secondary-light: theme('colors.secondary.light');
+    --secondary-dark: theme('colors.secondary.dark');
+    --accent: theme('colors.primary_accent.DEFAULT');
+    --accent-light: theme('colors.primary_accent.light');
+    --accent-dark: theme('colors.primary_accent.dark');
+  }
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-primary text-text antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  h1, h2, h3, blockquote {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  .section-card {
+    @apply bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-lg 
+           border border-primary/10 transition-all duration-300
+           hover:shadow-xl hover:border-primary_accent/20;
+  }
+
+  .heading-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-secondary_accent
+           bg-clip-text text-transparent;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-brand bg-clip-text text-transparent;
+  }
+
+  .timeline-item {
+    @apply relative pl-8 pb-8 border-l-2 border-primary_accent/30 last:border-0;
+  }
+
+  .timeline-item::before {
+    content: '';
+    @apply absolute left-[-9px] top-0 w-4 h-4 bg-white 
+           border-2 border-primary_accent rounded-full;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
+           bg-gradient-to-r from-primary to-secondary text-text
+           hover:shadow-lg hover:shadow-primary_accent/20 
+           active:transform active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
+           bg-white text-primary border-2 border-primary/20
+           hover:border-primary_accent hover:text-secondary
+           active:transform active:scale-95;
+  }
+
+  .skill-bar {
+    @apply h-2.5 bg-primary/10 rounded-full overflow-hidden;
+  }
+
+  .skill-progress {
+    @apply h-full bg-gradient-to-r from-primary_accent to-secondary_accent rounded-full
+           transition-all duration-1000 ease-out;
+  }
+
+  .gallery-item {
+    @apply relative overflow-hidden rounded-lg
+           transition-transform duration-300 hover:scale-105;
+  }
+
+  .gallery-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent
+           flex items-end p-4 opacity-0 transition-opacity duration-300
+           hover:opacity-100;
+  }
+
+  .hover-card {
+    @apply transition-all duration-300
+           hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .artwork-card {
+    @apply aspect-w-3 aspect-h-4 relative;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+.text-gradient {
+  @apply bg-gradient-brand bg-clip-text text-transparent;
+}
+
+/* Timeline styles */
+.timeline-item {
+  @apply relative pl-8 pb-8 border-l-2 border-primary_accent/30 last:border-0;
+}
+
+.timeline-item::before {
+  content: '';
+  @apply absolute left-[-9px] top-0 w-4 h-4 bg-white 
+         border-2 border-primary_accent rounded-full;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
+         bg-gradient-to-r from-primary to-secondary text-text
+         hover:shadow-lg hover:shadow-primary_accent/20 
+         active:transform active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
+         bg-white text-primary border-2 border-primary/20
+         hover:border-primary_accent hover:text-secondary
+         active:transform active:scale-95;
+}
+
+/* Skill bar animations */
+.skill-bar {
+  @apply h-2.5 bg-primary/10 rounded-full overflow-hidden;
+}
+
+.skill-progress {
+  @apply h-full bg-gradient-to-r from-primary_accent to-secondary_accent rounded-full
+         transition-all duration-1000 ease-out;
+}
+
+/* Gallery preview */
+.gallery-preview {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.gallery-item {
+  @apply relative overflow-hidden rounded-lg
+         transition-transform duration-300 hover:scale-105;
+}
+
+.gallery-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent
+         flex items-end p-4 opacity-0 transition-opacity duration-300
+         hover:opacity-100;
+}
+
+/* Card hover effects */
+.hover-card {
+  @apply transition-all duration-300
+         hover:shadow-lg hover:-translate-y-1;
+}
