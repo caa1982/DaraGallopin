@@ -1,9 +1,42 @@
 'use client'
 
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useInView } from 'react-intersection-observer'
 import { getRecentArtworks } from '@/data/artworks'
+import { ColumnsPhotoAlbum } from 'react-photo-album'
+import Lightbox from 'yet-another-react-lightbox'
+import 'yet-another-react-lightbox/styles.css'
+import 'react-photo-album/masonry.css'
+
+function renderNextImage(
+  { alt = '', title = '', sizes }: { alt?: string; title?: string; sizes?: string },
+  { photo, width, height }: { photo: { src: string; title?: string; description?: string; year?: string }; width: number; height: number }
+) {
+  return (
+    <div className="group relative w-full overflow-hidden rounded-lg shadow-lg">
+      <div style={{ aspectRatio: `${width} / ${height}` }} className="relative">
+        <Image
+          fill
+          src={photo.src}
+          alt={alt || 'Artwork'}
+          title={title}
+          sizes={sizes}
+          className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+        <div className="p-4 text-white w-full bg-black/40 rounded-b-lg">
+          {photo.title && <h2 className="font-semibold">{photo.title}</h2>}
+          {photo.description && <p className="text-sm">{photo.description}</p>}
+          {photo.year && <p className="text-xs text-gray-200 mt-1">{photo.year}</p>}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function About() {
   const { ref: bioRef, inView: bioInView } = useInView({ triggerOnce: true })
@@ -11,6 +44,9 @@ export default function About() {
   const { ref: publicationsRef, inView: publicationsInView } = useInView({ triggerOnce: true })
   const { ref: exhibitionsRef, inView: exhibitionsInView } = useInView({ triggerOnce: true })
   const { ref: galleryRef, inView: galleryInView } = useInView({ triggerOnce: true })
+
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   // Example data for "Publications" & "Exhibitions"
   const publications = [
@@ -59,7 +95,22 @@ export default function About() {
   ]
 
   // Get recent works from the centralized data
-  const recentWorks = getRecentArtworks(2)
+  const recentWorks = getRecentArtworks(2) // Increasing to 4 works for better grid layout
+  const photos = recentWorks.map((art) => ({
+    src: art.image,
+    width: art.width || 3,
+    height: art.height || 4,
+    title: art.title || "",
+    description: art.description || "",
+    year: art.year || "",
+  }))
+
+  const slides = photos.map((photo) => ({
+    src: photo.src,
+    alt: photo.title,
+    title: photo.title,
+    description: photo.description,
+  }))
 
   return (
     <main className="px-4 md:px-8 text-text pb-24">
@@ -249,27 +300,28 @@ export default function About() {
         <h2 className="text-3xl font-playfair font-bold text-secondary_accent mb-6 px-4">
           Recent Works
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
-          {recentWorks.map((work, index) => (
-            <div 
-              key={index} 
-              className="relative w-full h-64 rounded-lg overflow-hidden group cursor-pointer"
-            >
-              <Image
-                src={work.image}
-                alt={work.title}
-                fill
-                className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-xl font-bold text-white mb-2">{work.title}</h3>
-                {work.year && (
-                  <span className="text-white/80 text-sm mb-1">{work.year}</span>
-                )}
-                <span className="text-white/80 text-sm">View Details</span>
-              </div>
-            </div>
-          ))}
+        <div className="px-4">
+          <ColumnsPhotoAlbum
+            columns={(containerWidth) => {
+              if (containerWidth < 500) return 1
+              if (containerWidth < 900) return 2
+              return 2
+            }}
+            photos={photos}
+            spacing={16}
+            render={{ image: renderNextImage }}
+            onClick={({ index }) => {
+              setCurrentIndex(index)
+              setLightboxOpen(true)
+            }}
+          />
+
+          <Lightbox
+            open={lightboxOpen}
+            close={() => setLightboxOpen(false)}
+            slides={slides}
+            index={currentIndex}
+          />
         </div>
         <div className="mt-8 flex flex-col items-center sm:flex-row sm:items-center gap-4 justify-center max-w-md mx-auto px-4">
           <Link
