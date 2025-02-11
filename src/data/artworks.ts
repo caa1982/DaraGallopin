@@ -396,7 +396,8 @@ export function getArtworks(): Artwork[] {
     return b.year.localeCompare(a.year)
   }).map(artwork => ({
     ...artwork,
-    description: artwork.description.toUpperCase()
+    description: artwork.description.toUpperCase(),
+    title: artwork.title.toUpperCase()
   }))
 }
 
@@ -406,6 +407,7 @@ export function getRecentArtworks(limit: number = 2): Artwork[] {
     return b.year.localeCompare(a.year)
   }).slice(0, limit).map(artwork => ({
     ...artwork,
-    description: artwork.description.toUpperCase()
+    description: artwork.description.toUpperCase(),
+    title: artwork.title.toUpperCase()
   }))
 }
