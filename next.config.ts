@@ -1,16 +1,14 @@
-import type { NextConfig } from "next";
+import type { Config } from 'next'
 
-const nextConfig: NextConfig = {
+const config: Config = {
   images: {
-    domains: ['localhost'],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
-    unoptimized: true,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-};
+}
 
-export default nextConfig;
+export default config

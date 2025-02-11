@@ -35,7 +35,13 @@ function renderNextImage(
           src={photo.src}
           alt={alt || 'Artwork'}
           title={title}
-          sizes={sizes}
+          sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+          quality={85}
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="#1a1a1a"/></svg>'
+          ).toString('base64')}`}
           className="transition-transform duration-300 ease-in-out group-hover:scale-105"
         />
       </div>
@@ -132,7 +138,12 @@ export default function Home() {
             alt="Hero Background"
             fill
             priority
-            quality={100}
+            quality={90}
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
+              '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="#1a1a1a"/></svg>'
+            ).toString('base64')}`}
             className="object-cover scale-125 transform transition-transform duration-300"
           />
         </div>

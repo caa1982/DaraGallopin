@@ -60,7 +60,7 @@ export const artworks: Artwork[] = [
   },
   {
     title: "Submarine",
-    image: "/Submarine.jpg",
+    image: "/Submarine.png",
     width: 16,
     height: 10,
     description: "Oil on Canvas",
@@ -68,7 +68,7 @@ export const artworks: Artwork[] = [
   },
   {
     title: "Gopnik Shoe",
-    image: "/Gopnik_Shoe.jpg",
+    image: "/Gopnik_Shoe.png",
     width: 6,
     height: 9,
     description: "Oil on Canvas",
@@ -77,7 +77,7 @@ export const artworks: Artwork[] = [
   },
   {
     title: "Gopnik Knife",
-    image: "/Gopnik_knife.jpg",
+    image: "/Gopnik_knife.png",
     width: 6,
     height: 9,
     description: "oil on canvas",
@@ -93,7 +93,7 @@ export const artworks: Artwork[] = [
   },
   {
     title: "Girl with Knife",
-    image: "/Girl_Knife.jpg",
+    image: "/Girl_Knife.png",
     width: 60,
     height: 90,
     description: "oil and Gold Leaf on Wonden Box",
@@ -101,7 +101,7 @@ export const artworks: Artwork[] = [
   },
   {
     title: "Robin Williams",
-    image: "/Robin.jpg",
+    image: "/Robin.png",
     width: 60,
     height: 75,
     description: "Oil on Canvas",
@@ -286,7 +286,7 @@ export const artworks: Artwork[] = [
   },
   {
     title: "Tree of Life",
-    image: "/Tree.jpg",
+    image: "/Tree.png",
     description: "Oil on Canvas",
     year: "2019",
     width: 130,
