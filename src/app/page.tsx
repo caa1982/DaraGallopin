@@ -188,7 +188,7 @@ export default function Home() {
             </Link>
             <Link
               href="/about"
-              className="group relative px-12 py-4 border-2 border-text text-text rounded-full hover:border-secondary_accent transition-all hover:scale-105 font-semibold w-full sm:w-auto tracking-wide text-lg overflow-hidden"
+              className="group relative px-12 py-4 border-2 border-text text-text rounded-full hover:border-primary_accent transition-all hover:scale-105 font-semibold w-full sm:w-auto tracking-wide text-lg overflow-hidden"
             >
               <span className="relative z-10 group-hover:text-primary_accent transition-colors">
                 About the Artist
