@@ -12,7 +12,7 @@ const navigationLinks = [
 
 const socialLinks = [
   { href: 'https://www.instagram.com/daragallopin/', label: 'Instagram', icon: FaInstagram },
-  { href: 'https://x.com', label: 'Twitter', icon: FaXTwitter },
+  { href: 'https://x.com/Daragallopin', label: 'Twitter', icon: FaXTwitter },
 ];
 
 const Footer = () => {

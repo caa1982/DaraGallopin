@@ -22,7 +22,7 @@ const socialLinks = [
   {
     name: 'X',
     icon: <FaXTwitter size={20} />,
-    href: 'https://linkedin.com/in/dara-gallopin'
+    href: 'https://x.com/Daragallopin'
   }
 ]
 
