@@ -51,7 +51,7 @@ export const artworks: Artwork[] = [
   },
   {
     title: "The Scream",
-    image: "/Scream.jpg",
+    image: "/Scream.png",
     width: 8,
     height: 10,
     description: "Oil on Canvas",
