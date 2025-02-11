@@ -54,6 +54,10 @@
 }
 
 @layer components {
+  .logo-font {
+    font-family: 'Playfair Display', serif;
+  }
+  
   .section-card {
     @apply bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-lg 
            border border-primary/10 transition-all duration-300

@@ -72,13 +72,14 @@ const Navbar = () => {
           {/* Logo */}
           <Link
             href="/"
-            className="text-2xl font-bold transition-transform duration-300 group"
+            className="text-2xl sm:text-2xl md:text-3xl font-bold logo-font transition-transform duration-300 group"
             aria-label="Go to homepage"
           >
             <span className="text-text group-hover:text-primary_accent transition-colors transform group-hover:scale-105">
               DARA GALLOPIN
             </span>
           </Link>
+
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-6">
