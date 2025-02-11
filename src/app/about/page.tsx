@@ -67,7 +67,7 @@ export default function About() {
       <section className="relative overflow-hidden pb-10 pt-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8">
           {/* Artist Image with Hover Effect */}
-          <div className="relative w-full max-w-md h-96 rounded-xl overflow-hidden group shadow-xl">
+          <div className="relative w-full max-w-md h-72 sm:h-96 rounded-xl overflow-hidden group shadow-xl">
             <Image
               src="/Dara.jpg"
               alt="Portrait of Dara Gallopin"
@@ -85,23 +85,23 @@ export default function About() {
           
           {/* Intro Text + Call to Action */}
           <div className="flex-1 flex flex-col gap-6">
-            <h1 className="text-5xl md:text-6xl font-playfair font-bold leading-tight">
+            <h1 className="text-4xl md:text-6xl sm:text-left text-center font-playfair font-bold leading-tight">
               About <span className="text-secondary_accent-light">Dara Gallopin</span>
             </h1>
-            <p className="text-lg leading-relaxed tracking-wide text-text/90">
+            <p className="text-lg sm:text-left text-center leading-relaxed tracking-wide text-text/90">
               A Swiss-Iranian artist whose work transcends cultural boundaries and traditional mediums,
               creating a unique dialogue between heritage and contemporary expression.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+            <div className="flex flex-col items-center sm:flex-row gap-4 mt-4">
               <Link
                 href="/gallery"
-                className="px-6 py-3 bg-primary_accent text-text rounded-full font-semibold text-lg hover:bg-primary_accent-light transition-all hover:shadow-lg hover:shadow-primary_accent/30"
+                className="w-3/4 sm:w-auto text-center px-6 py-3 bg-primary_accent text-text rounded-full font-semibold text-base md:text-lg hover:bg-primary_accent-light transition-all hover:shadow-lg hover:shadow-primary_accent/30 focus:outline-none focus:ring-2 focus:ring-primary_accent focus:ring-offset-2 active:scale-95"
               >
                 View Gallery
               </Link>
               <Link
                 href="/contact"
-                className="px-6 py-3 bg-transparent border-2 border-primary_accent text-primary_accent rounded-full font-semibold text-lg hover:bg-primary_accent hover:text-text transition-all hover:shadow-md hover:shadow-primary_accent/30"
+                className="w-3/4 sm:w-auto text-center px-6 py-3 bg-transparent border-2 border-primary_accent text-primary_accent rounded-full font-semibold text-base md:text-lg hover:bg-primary_accent hover:text-text transition-all hover:shadow-md hover:shadow-primary_accent/30 focus:outline-none focus:ring-2 focus:ring-primary_accent focus:ring-offset-2 active:scale-95"
               >
                 Commission Art
               </Link>
@@ -271,16 +271,59 @@ export default function About() {
             </div>
           ))}
         </div>
-        <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="mt-8 flex flex-col items-center sm:flex-row sm:items-center gap-4 justify-center max-w-md mx-auto px-4">
           <Link
             href="/gallery"
-            className="px-8 py-3 bg-primary_accent text-text rounded-full hover:bg-primary_accent-light hover:shadow-lg hover:shadow-primary_accent/30 transition-transform duration-300 hover:scale-105 font-semibold tracking-wide text-lg"
+            className="
+              w-full
+              text-center
+              sm:w-auto
+              px-4 py-3
+              bg-primary_accent
+              text-text
+              rounded-full
+              hover:bg-primary_accent-light
+              hover:shadow-lg hover:shadow-primary_accent/30
+              transition-transform duration-300
+              hover:scale-105
+              active:scale-95
+              focus:outline-none
+              focus:ring-2
+              focus:ring-primary_accent
+              focus:ring-offset-2
+              font-semibold
+              tracking-wide
+              text-base
+              md:text-lg
+            "
           >
             View Full Gallery
           </Link>
+
           <Link
             href="/contact"
-            className="px-8 py-3 border-2 border-primary_accent text-primary_accent rounded-full hover:bg-primary_accent hover:text-text transition-transform duration-300 hover:scale-105 font-semibold tracking-wide text-lg"
+            className="
+              w-full
+              text-center
+              sm:w-auto
+              px-4 py-3
+              border-2 border-primary_accent
+              text-primary_accent
+              rounded-full
+              hover:bg-primary_accent
+              hover:text-text
+              transition-transform duration-300
+              hover:scale-105
+              active:scale-95
+              focus:outline-none
+              focus:ring-2
+              focus:ring-primary_accent
+              focus:ring-offset-2
+              font-semibold
+              tracking-wide
+              text-base
+              md:text-lg
+            "
           >
             Commission Art
           </Link>
