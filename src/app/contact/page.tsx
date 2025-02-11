@@ -31,7 +31,12 @@ interface InputFieldProps {
   id: string
   type?: string
   isTextArea?: boolean
-  registration: any
+  registration: {
+    onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+    onBlur: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
+    name: string
+    ref: React.RefCallback<HTMLInputElement | HTMLTextAreaElement>
+  }
   placeholder: string
   error?: string
   rows?: number
@@ -96,8 +101,11 @@ export default function Contact() {
   const [showSuccess, setShowSuccess] = useState(false)
 
   const onSubmit = async (data: ContactForm) => {
-    await sendToFormspree(data as any)
-
+    const submissionData = {
+      ...data,
+      [data.email]: data.email,  // This makes it compatible with FieldValues
+    }
+    await sendToFormspree(submissionData)
     if (formspreeState.succeeded) {
       reset()
       setShowSuccess(true)
