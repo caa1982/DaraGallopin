@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FaInstagram, FaLinkedinIn, FaXTwitter, FaEnvelope, FaLocationDot } from 'react-icons/fa6';
+import { FaInstagram, FaXTwitter, FaEnvelope, FaLocationDot } from 'react-icons/fa6';
 
 const navigationLinks = [
   { href: '/', label: 'Home' },
@@ -12,7 +12,6 @@ const navigationLinks = [
 
 const socialLinks = [
   { href: 'https://instagram.com', label: 'Instagram', icon: FaInstagram },
-  { href: 'https://linkedin.com', label: 'LinkedIn', icon: FaLinkedinIn },
   { href: 'https://twitter.com', label: 'Twitter', icon: FaXTwitter },
 ];
 

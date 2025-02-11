@@ -4,35 +4,34 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
-const Navbar = () => {
+// Custom hook to track scroll position
+function useScrolled(threshold = 10) {
   const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > threshold);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [threshold]);
+
+  return isScrolled;
+}
+
+const Navbar = () => {
+  const isScrolled = useScrolled();
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const closeMenu = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const closeMenu = useCallback(() => setIsOpen(false), []);
 
   // Close menu on route change
   useEffect(() => {
     closeMenu();
   }, [pathname, closeMenu]);
 
-  // Handle escape key
+  // Close menu on Escape key
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeMenu();
-      }
-    };
+    const handleEscape = (e: KeyboardEvent) => e.key === 'Escape' && closeMenu();
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [closeMenu]);
@@ -40,24 +39,32 @@ const Navbar = () => {
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/gallery', label: 'Gallery' }
+    { href: '/gallery', label: 'Gallery' },
+    { href: '/contact', label: 'Get in Touch' },
   ];
 
+  // Common classes for the nav container
+  const navClass = isScrolled 
+    ? 'bg-primary/95 shadow-lg backdrop-blur-sm'
+    : 'bg-primary-dark/90 backdrop-blur-sm';
+
+  // Button classes used for both mobile and desktop actions
+  const buttonClass = (scrolled = false) =>
+    scrolled
+      ? 'bg-primary_accent hover:bg-primary_accent-light text-primary shadow-lg hover:shadow-xl'
+      : 'border-2 border-text text-text hover:bg-primary_accent hover:text-primary hover:border-primary_accent';
+
   return (
-    <nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-primary/95 shadow-lg backdrop-blur-sm' 
-          : 'bg-primary-dark/90 backdrop-blur-sm'
-      }`}
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${navClass}`}
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="text-2xl font-bold transition-all duration-300 group"
             aria-label="Go to homepage"
           >
@@ -65,37 +72,35 @@ const Navbar = () => {
               DARA GALLOPIN
             </span>
           </Link>
-          
+
           {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-2">
-            {navLinks.map((link) => (
+            {navLinks.slice(0, -1).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`relative px-4 py-2 transition-all group ${
-                  pathname === link.href 
-                    ? 'text-primary_accent' 
+                  pathname === link.href
+                    ? 'text-primary_accent'
                     : isScrolled
-                      ? 'text-text/80 hover:text-text'
-                      : 'text-text/90 hover:text-primary_accent'
+                    ? 'text-text/80 hover:text-text'
+                    : 'text-text/90 hover:text-primary_accent'
                 }`}
                 aria-current={pathname === link.href ? 'page' : undefined}
               >
                 {link.label}
-                <span className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary_accent transition-all duration-300 transform -translate-x-1/2 group-hover:w-1/2 ${
-                  pathname === link.href ? 'w-1/2' : ''
-                }`} />
+                <span
+                  className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary_accent transition-all duration-300 transform -translate-x-1/2 group-hover:w-1/2 ${
+                    pathname === link.href ? 'w-1/2' : ''
+                  }`}
+                />
               </Link>
             ))}
             <Link
-              href="/contact"
-              className={`ml-4 px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-[1.02] active:scale-95 ${
-                isScrolled
-                  ? 'bg-primary_accent hover:bg-primary_accent-light text-primary shadow-lg hover:shadow-xl'
-                  : 'border-2 border-text text-text hover:bg-primary_accent hover:text-primary hover:border-primary_accent'
-              }`}
+              href={navLinks[3].href}
+              className={`ml-4 px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-[1.02] active:scale-95 ${buttonClass(isScrolled)}`}
             >
-              Get in Touch
+              {navLinks[3].label}
             </Link>
           </div>
 
@@ -143,8 +148,8 @@ const Navbar = () => {
                 key={link.href}
                 href={link.href}
                 className={`block px-4 py-3 rounded-lg transition-all duration-300 active:scale-[0.98] ${
-                  pathname === link.href 
-                    ? 'text-primary_accent bg-primary_accent/10' 
+                  pathname === link.href
+                    ? 'text-primary_accent bg-primary_accent/10'
                     : 'text-text/80 hover:text-text hover:bg-primary_accent/10'
                 }`}
                 onClick={closeMenu}
@@ -153,13 +158,6 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            <Link
-              href="/contact"
-              className="block px-4 py-3 mt-3 text-center bg-primary_accent text-primary hover:bg-primary_accent-light rounded-lg transition-all duration-300 active:scale-[0.98] shadow-lg"
-              onClick={closeMenu}
-            >
-              Get in Touch
-            </Link>
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useInView } from 'react-intersection-observer'
-import Modal from '@/components/Lightbox'
 import { useState } from 'react'
 import { getRecentArtworks } from '@/data/artworks'
 
@@ -99,9 +98,9 @@ export default function About() {
               <div className="flex flex-col sm:flex-row gap-4 mt-4">
                 <Link
                   href="/gallery"
-                  className="px-6 py-3 bg-secondary_accent text-text rounded-full 
-                            font-semibold text-lg hover:bg-secondary_accent-light transition-all
-                            hover:shadow-lg hover:shadow-secondary_accent/30"
+                  className="px-6 py-3 bg-primary_accent text-text rounded-full 
+                            font-semibold text-lg hover:bg-primary_accent-light transition-all
+                            hover:shadow-lg hover:shadow-primary_accent/30"
                 >
                   View Gallery
                 </Link>
@@ -312,8 +311,8 @@ export default function About() {
             </Link>
             <Link
               href="/contact"
-              className="px-8 py-3 border-2 border-secondary_accent text-secondary_accent rounded-full 
-                        hover:bg-secondary_accent hover:text-text transition-all hover:scale-105 
+              className="px-8 py-3 border-2 border-primary_accent text-primary_accent rounded-full 
+                        hover:bg-primary_accent hover:text-text transition-all hover:scale-105 
                         font-semibold tracking-wide text-lg"
             >
               Commission Art
@@ -322,20 +321,7 @@ export default function About() {
         </section>
       </div>
 
-      {/* Add the Lightbox Modal */}
-      <Modal isOpen={!!openImage} onClose={() => setOpenImage(null)}>
-        {openImage && (
-          <div className="relative">
-            <Image
-              src={openImage}
-              alt="Fullscreen artwork"
-              width={1200}
-              height={800}
-              className="w-full h-auto rounded"
-            />
-          </div>
-        )}
-      </Modal>
+     
     </main>
   )
 }
