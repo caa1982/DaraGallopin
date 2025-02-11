@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { shuffle } from "lodash";
 
 // External Libraries
 import { ColumnsPhotoAlbum } from "react-photo-album";
@@ -12,7 +13,7 @@ import "yet-another-react-lightbox/styles.css";
 
 // Components & Data
 import LoadingSpinner from "@/components/LoadingSpinner";
-import { getFeaturedArtworks } from "@/data/artworks";
+import { getArtworks } from "@/data/artworks";
 
 // Rotating Quotes
 const artistQuotes = [
@@ -102,9 +103,9 @@ export default function Home() {
   }, []);
 
   // Prepare Featured Artworks and Photos
-  const featuredWorks = getFeaturedArtworks();
+  const featuredWorks = useMemo(() => shuffle(getArtworks()).slice(0, 3), []);
 
-  const photos = featuredWorks.map((art) => ({
+  const photos = featuredWorks.map((art: { image: string; width?: number; height?: number; title?: string; description?: string; year?: string }) => ({
     src: art.image,
     width: art.width || 0,
     height: art.height || 0,
@@ -113,7 +114,23 @@ export default function Home() {
     year: art.year || "",
   }));
 
-  const slides = photos.map((photo) => ({
+  interface Photo {
+    src: string;
+    width: number;
+    height: number;
+    title?: string;
+    description?: string;
+    year?: string;
+  }
+
+  interface Slide {
+    src: string;
+    alt?: string;
+    title?: string;
+    description?: string;
+  }
+
+  const slides: Slide[] = photos.map((photo: Photo) => ({
     src: photo.src,
     alt: photo.title,
     title: photo.title,

@@ -390,10 +390,6 @@ export const artworks: Artwork[] = [
   }
 ]
 
-export function getFeaturedArtworks(): Artwork[] {
-  return artworks.filter(artwork => artwork.isFeatured)
-}
-
 export function getArtworks(): Artwork[] {
   return [...artworks].sort((a, b) => {
     if (!a.year || !b.year) return 0

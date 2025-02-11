@@ -12,6 +12,7 @@
     "@formspree/react": "^2.5.1",
     "@heroicons/react": "^2.2.0",
     "animate.css": "^4.1.1",
+    "lodash": "^4.17.21",
     "next": "15.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
