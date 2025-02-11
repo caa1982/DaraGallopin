@@ -53,8 +53,9 @@ function InputField({
   rows = 5
 }: InputFieldProps) {
   const baseClasses =
-    'w-full px-4 py-2 rounded-lg border border-text/20 bg-primary_accent-dark/10 text-text placeholder:text-text/60 focus:outline-none focus:ring-2 focus:ring-primary_accent focus:border-transparent transition duration-200'
-  const errorClass = error ? 'border-secondary_accent.dark' : ''
+    'w-full px-4 py-2 rounded-lg border border-text/20 bg-primary-dark/10 text-text placeholder:text-text/60 focus:outline-none focus:ring-2 focus:ring-primary_accent focus:border-transparent transition duration-200'
+  // If there's an error, add a red (or secondary accent) border
+  const errorClass = error ? 'border-secondary_accent-dark' : ''
 
   return (
     <div className="space-y-1">
@@ -81,7 +82,7 @@ function InputField({
         />
       )}
       {error && (
-        <p className="mt-1 text-sm text-secondary_accent.dark" role="alert">
+        <p className="mt-1 text-sm text-secondary_accent-dark" role="alert">
           {error}
         </p>
       )}
@@ -103,7 +104,7 @@ export default function Contact() {
   const onSubmit = async (data: ContactForm) => {
     const submissionData = {
       ...data,
-      [data.email]: data.email,  // This makes it compatible with FieldValues
+      [data.email]: data.email // Compatibility with FieldValues
     }
     await sendToFormspree(submissionData)
     if (formspreeState.succeeded) {
@@ -114,7 +115,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-primary text-text pt-24 pb-20">
+    <div className="min-h-screen text-text pt-24 pb-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Heading */}
         <div className="text-center mb-10">
@@ -127,7 +128,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Contact Info */}
           <div className="animate__animated animate__fadeInLeft">
-            <div className="bg-white/10 border border-white/20 p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 bg-primary.dark/20">
+            <div className="bg-primary-dark/20 border border-white/20 p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
               <div className="space-y-6">
                 <div>
@@ -138,7 +139,7 @@ export default function Contact() {
                   <h3 className="text-lg font-semibold mb-2">Email</h3>
                   <a
                     href="mailto:contact@daragallopin.com"
-                    className="text-primary_accent-light hover:text-primary_accent transition-colors"
+                    className="text-secondary_accent-light hover:text-primary_accent transition-colors"
                   >
                     contact@daragallopin.com
                   </a>
@@ -166,7 +167,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="animate__animated animate__fadeInRight">
-            <div className="bg-white/10 border border-white/20 p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 bg-primary.dark/20">
+            <div className="bg-primary-dark/20 border border-white/20 p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <InputField
@@ -210,7 +211,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting || formspreeState.submitting}
-                  className="w-full bg-secondary_accent text-text py-3 px-6 rounded-lg font-medium shadow-sm hover:shadow-md transition-colors duration-200 disabled:opacity-60 focus:ring-2 focus:ring-offset-2 focus:ring-secondary_accent inline-flex items-center justify-center"
+                  className="w-full bg-primary_accent text-text py-3 px-6 rounded-lg font-medium shadow-sm hover:shadow-md transition-colors duration-200 disabled:opacity-60 focus:ring-2 focus:ring-offset-2 focus:ring-secondary_accent inline-flex items-center justify-center"
                 >
                   {isSubmitting || formspreeState.submitting ? (
                     <div className="flex items-center">
@@ -224,7 +225,7 @@ export default function Contact() {
 
                 {showSuccess && (
                   <div
-                    className="animate__animated animate__fadeIn mt-4 p-4 border border-primary_accent.dark/30 bg-primary_accent-light/10 rounded-lg text-center text-primary_accent.dark"
+                    className="animate__animated animate__fadeIn mt-4 p-4 border border-primary_accent-dark/30 bg-primary_accent-light/10 rounded-lg text-center text-primary_accent-dark"
                     role="alert"
                   >
                     Thank you for your message! I’ll get back to you soon.

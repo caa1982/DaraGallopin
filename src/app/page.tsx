@@ -19,12 +19,11 @@ const artistQuotes = [
   "Art should be like the stars that delight everyone, from a child to an astrophysicist",
   "I'm like a scuba diver who dives into the abyss of my subconscious, bringing up pearls to share with the world",
   "Life only has value if shared. If not, it's just like a dream",
-  "Art is about relationships, multi-layered"
+  "Art is about relationships, multi-layered",
 ];
 
-
 function renderNextImage(
-  { alt = '', title = '', sizes }: { alt?: string; title?: string; sizes?: string },
+  { alt = "", title = "", sizes }: { alt?: string; title?: string; sizes?: string },
   { photo, width, height }: { photo: { src: string; title?: string; description?: string; year?: string }; width: number; height: number }
 ) {
   return (
@@ -33,7 +32,7 @@ function renderNextImage(
         <Image
           fill
           src={photo.src}
-          alt={alt || 'Artwork'}
+          alt={alt || "Artwork"}
           title={title}
           sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
           quality={85}
@@ -41,7 +40,7 @@ function renderNextImage(
           placeholder="blur"
           blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
             '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="#1a1a1a"/></svg>'
-          ).toString('base64')}`}
+          ).toString("base64")}`}
           className="transition-transform duration-300 ease-in-out group-hover:scale-105"
         />
       </div>
@@ -54,7 +53,7 @@ function renderNextImage(
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function Home() {
@@ -66,8 +65,10 @@ export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
+    // Simulate a brief loading period
     const timer = setTimeout(() => setIsLoading(false), 1000);
 
+    // Parallax scroll effect for the background
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const parallaxElement = document.querySelector(".parallax-bg");
@@ -76,16 +77,17 @@ export default function Home() {
       }
     };
 
+    // Mouse move effect for slight rotation of the background
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 20;
       const y = (e.clientY / window.innerHeight - 0.5) * 20;
       setMousePosition({ x, y });
     };
 
-    const quoteInterval = setInterval(
-      () => setCurrentQuote((prev) => (prev + 1) % artistQuotes.length),
-      5000
-    );
+    // Rotate the artist quotes every 5 seconds
+    const quoteInterval = setInterval(() => {
+      setCurrentQuote((prev) => (prev + 1) % artistQuotes.length);
+    }, 5000);
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("mousemove", handleMouseMove);
@@ -108,25 +110,25 @@ export default function Home() {
     height: art.height || 0,
     title: art.title || "",
     description: art.description || "",
-    year: art.year || ""
+    year: art.year || "",
   }));
 
   const slides = photos.map((photo) => ({
     src: photo.src,
     alt: photo.title,
     title: photo.title,
-    description: photo.description
+    description: photo.description,
   }));
 
   return (
     <div className="pt-16">
       {/* HERO SECTION */}
-      <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden">
+      <header className="relative min-h-[95vh] flex items-center justify-center overflow-hidden">
         {/* Parallax Background */}
         <div
           className="absolute inset-0 z-0 parallax-bg transition-transform duration-300 ease-out"
           style={{
-            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.02}deg) rotateY(${mousePosition.x * 0.02}deg) translateZ(0)`
+            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.02}deg) rotateY(${mousePosition.x * 0.02}deg) translateZ(0)`,
           }}
         >
           <div
@@ -143,7 +145,7 @@ export default function Home() {
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
               '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="#1a1a1a"/></svg>'
-            ).toString('base64')}`}
+            ).toString("base64")}`}
             className="object-cover scale-125 transform transition-transform duration-300"
           />
         </div>
@@ -226,10 +228,10 @@ export default function Home() {
           <div className="w-[2px] h-16 bg-gradient-to-b from-secondary_accent to-transparent shadow-glow" />
           <div className="w-4 h-4 absolute -bottom-2 left-1/2 -translate-x-1/2 rotate-45 border-b-2 border-r-2 border-secondary_accent/50" />
         </div>
-      </section>
+      </header>
 
       {/* FEATURED WORKS SECTION */}
-      <section className="max-w-7xl mx-auto text-center mb-12 py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-primary/95">
+      <main className="max-w-7xl mx-auto text-center mb-12 py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-primary/95">
         <div className="mb-12">
           <h2 className="text-4xl font-bold text-secondary_accent-light mb-6">
             Featured Works
@@ -271,7 +273,7 @@ export default function Home() {
         <div className="mt-12 text-center">
           <Link
             href="/gallery"
-            className="inline-flex items-center px-8 py-3 bg-primary_accent/10 hover:bg-secondary_accent/20 text-primary_accent hover:text-secondary_accent rounded-full transition-all duration-300 group"
+            className="inline-flex items-center px-8 py-3 bg-primary_accent/10 hover:bg-primary_accent/20 text-primary_accent hover:text-primary_accent-dark rounded-full transition-all duration-300 group"
           >
             Explore All Works
             <svg
@@ -289,7 +291,7 @@ export default function Home() {
             </svg>
           </Link>
         </div>
-      </section>
+      </main>
     </div>
   );
 }
