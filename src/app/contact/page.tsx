@@ -17,7 +17,7 @@ const socialLinks = [
   {
     name: 'Instagram',
     icon: <FaInstagram size={20} />,
-    href: 'https://instagram.com/dara_gallopin'
+    href: 'https://www.instagram.com/daragallopin/'
   },
   {
     name: 'X',

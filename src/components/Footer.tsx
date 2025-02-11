@@ -11,7 +11,7 @@ const navigationLinks = [
 ];
 
 const socialLinks = [
-  { href: 'https://instagram.com', label: 'Instagram', icon: FaInstagram },
+  { href: 'https://www.instagram.com/daragallopin/', label: 'Instagram', icon: FaInstagram },
   { href: 'https://x.com', label: 'Twitter', icon: FaXTwitter },
 ];
 
