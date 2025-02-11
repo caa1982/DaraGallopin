@@ -1,4 +1,3 @@
-//// filepath: /home/cyril/Documents/dara_website/src/app/contact/page.tsx
 'use client'
 
 import { useForm } from 'react-hook-form'

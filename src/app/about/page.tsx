@@ -3,11 +3,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useInView } from 'react-intersection-observer'
-import { useState } from 'react'
 import { getRecentArtworks } from '@/data/artworks'
 
 export default function About() {
-  const [openImage, setOpenImage] = useState<string | null>(null)
   const { ref: bioRef, inView: bioInView } = useInView({ triggerOnce: true })
   const { ref: timelineRef, inView: timelineInView } = useInView({ triggerOnce: true })
   const { ref: publicationsRef, inView: publicationsInView } = useInView({ triggerOnce: true })
@@ -281,7 +279,6 @@ export default function About() {
               <div 
                 key={index} 
                 className="relative w-full h-64 rounded-lg overflow-hidden group cursor-pointer"
-                onClick={() => setOpenImage(work.image)}
               >
                 <Image
                   src={work.image}
