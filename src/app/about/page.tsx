@@ -15,7 +15,7 @@ import 'react-photo-album/masonry.css'
 
 function renderNextImage(
   { alt = '', title = '', sizes }: { alt?: string; title?: string; sizes?: string },
-  { photo, width, height }: { photo: { src: string; title?: string; description?: string; year?: string }; width: number; height: number }
+  { photo, width, height }: { photo: { src: string; title?: string; description?: string; size?: string; year?: string }; width: number; height: number }
 ) {
   return (
     <div className="group relative w-full overflow-hidden rounded-lg shadow-lg">
@@ -33,7 +33,8 @@ function renderNextImage(
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
         <div className="p-4 text-white w-full bg-black/70 rounded-b-lg">
           {photo.title && <h2 className="font-semibold">{photo.title}</h2>}
-          {photo.description && <p className="text-sm">{photo.description}</p>}
+          {photo.description && <h3 className="text-sm">{photo.description}</h3>}
+          {photo.size && <h4 className="text-xs text-gray-200 mt-1">{photo.size}</h4>}
           {photo.year && <p className="text-xs text-gray-200 mt-1">{photo.year}</p>}
         </div>
       </div>
@@ -104,6 +105,7 @@ export default function About() {
     width: art.width || 3,
     height: art.height || 4,
     title: art.title || "",
+    size: art.size || "",
     description: art.description || "",
     year: art.year || "",
   }))
@@ -112,7 +114,7 @@ export default function About() {
     src: photo.src,
     alt: photo.title,
     title: photo.title,
-    description: photo.description,
+    description: photo.description + ' - ' + photo.size,
   }))
 
   return (
