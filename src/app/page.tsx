@@ -9,7 +9,9 @@ import { shuffle } from "lodash";
 import { ColumnsPhotoAlbum } from "react-photo-album";
 import "react-photo-album/columns.css";
 import Lightbox from "yet-another-react-lightbox";
+import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/captions.css";
 
 // Components & Data
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -47,7 +49,7 @@ function renderNextImage(
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-        <div className="p-4 text-white w-full bg-black/40 rounded-b-lg">
+        <div className="p-4 text-white w-full bg-black/70 rounded-b-lg">
           {photo.title && <h2 className="font-semibold">{photo.title}</h2>}
           {photo.description && <p className="text-sm">{photo.description}</p>}
           {photo.year && <p className="text-xs text-gray-200 mt-1">{photo.year}</p>}
@@ -279,6 +281,7 @@ export default function Home() {
               }}
             />
             <Lightbox
+            plugins={[Captions]}
               open={lightboxOpen}
               close={() => setLightboxOpen(false)}
               slides={slides}

@@ -38,7 +38,7 @@ export const artworks: Artwork[] = [
     image: "/Diptych.jpg",
     width: 3,
     height: 2,
-    description: "oil on canvas",
+    description: "270 x 360 cm - oil on canvas",
     year: "2020"
   },
   {
@@ -46,7 +46,7 @@ export const artworks: Artwork[] = [
     image: "/Second_Chance_2.jpg",
     width: 468,
     height: 195,
-    description: "oil on canvas",
+    description: "195 x 468 - oil on canvas",
     year: "2018"
   },
   {
@@ -54,7 +54,7 @@ export const artworks: Artwork[] = [
     image: "/Scream.png",
     width: 8,
     height: 10,
-    description: "Oil on Canvas",
+    description: "100 x 80 cm - Oil on Canvas",
     isFeatured: true,
     year: "2020",
   },
@@ -63,7 +63,7 @@ export const artworks: Artwork[] = [
     image: "/Submarine.png",
     width: 16,
     height: 10,
-    description: "Oil on Canvas",
+    description: "100 x 160 cm - Oil on Canvas",
     year: "2019",
   },
   {
@@ -71,7 +71,7 @@ export const artworks: Artwork[] = [
     image: "/Gopnik_Shoe.png",
     width: 6,
     height: 9,
-    description: "Oil on Canvas",
+    description: "90 x 60 cm - Oil on Canvas",
     isFeatured: true,
     year: "2017",
   },
@@ -80,7 +80,7 @@ export const artworks: Artwork[] = [
     image: "/Gopnik_knife.png",
     width: 6,
     height: 9,
-    description: "oil on canvas",
+    description: "90 x 60 cm - oil on canvas",
     year: "2018"
   },
   {
@@ -88,7 +88,7 @@ export const artworks: Artwork[] = [
     image: "/Gopnik_Girl.jpg",
     width: 2,
     height: 1,
-    description: "oil on canvas",
+    description: "105 x 210 cm - oil on canvas",
     year: "2018"
   },
   {
@@ -96,7 +96,7 @@ export const artworks: Artwork[] = [
     image: "/Girl_Knife.png",
     width: 60,
     height: 90,
-    description: "oil and Gold Leaf on Wonden Box",
+    description: "90 x 60 cm - oil and Gold Leaf on Wonden Box",
     year: "2018"
   },
   {
@@ -104,14 +104,14 @@ export const artworks: Artwork[] = [
     image: "/Robin.png",
     width: 60,
     height: 75,
-    description: "Oil on Canvas",
+    description: "60 x 75 cm - Oil on Canvas",
     isFeatured: true,
     year: "2018"
   },
   {
     title: "Second Chance",
     image: "/Second_chance.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 250 cm - Colored Pencils on Paper",
     year: "2007",
     width: 250,
     height: 150,
@@ -119,7 +119,7 @@ export const artworks: Artwork[] = [
   {
     title: "Girl in Tutu 1",
     image: "/Tutu_1.jpg",
-    description: "Oil and Gold Leaf on Wooden Box",
+    description: "90 x 60 cm - Oil and Gold Leaf on Wooden Box",
     year: "2018",
     width: 80,
     height: 90,
@@ -127,7 +127,7 @@ export const artworks: Artwork[] = [
   {
     title: "Girl in Tutu 2",
     image: "/Tutu_2.jpg",
-    description: "Oil and Gold Leaf on Wooden Box",
+    description: "90 x 60 cm - Oil and Gold Leaf on Wooden Box",
     year: "2018",
     width: 80,
     height: 90,
@@ -135,7 +135,7 @@ export const artworks: Artwork[] = [
   {
     title: "Witches & Bitches",
     image: "/Witches_Bitches.jpg",
-    description: "Oil and Gold Leaf on Wooden Cross",
+    description: "220 x 136 cm - Oil and Gold Leaf on Wooden Cross",
     year: "2018",
     width: 160,
     height: 200,
@@ -143,7 +143,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untilted_1.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 250 cm - Colored Pencils on Paper",
     year: "2008",
     width: 250,
     height: 150,
@@ -151,7 +151,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untilted_3.jpg",
-    description: "Colored Pencils on Paper",
+    description: "50 x 83 cm - Colored Pencils on Paper",
     year: "2014",
     width: 83,
     height: 50,
@@ -159,7 +159,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untilted_4.jpg",
-    description: "Colored Pencils on Paper",
+    description: "50 x 83 cm - Colored Pencils on Paper",
     year: "2013",
     width: 83,
     height: 50,
@@ -167,7 +167,7 @@ export const artworks: Artwork[] = [
   {
     title: "Emerge",
     image: "/Emerge.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 240 cm - Colored Pencils on Paper",
     year: "2008",
     width: 240,
     height: 150,
@@ -175,7 +175,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_5.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 240 cm - Colored Pencils on Paper",
     year: "2009",
     width: 250,
     height: 150,
@@ -183,7 +183,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_6.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2010",
     width: 150,
     height: 150,
@@ -191,7 +191,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_7.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2010",
     width: 150,
     height: 150,
@@ -199,7 +199,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_8.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2010",
     width: 150,
     height: 150,
@@ -207,7 +207,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_9.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2015",
     width: 150,
     height: 170,
@@ -215,7 +215,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_10.jpg",
-    description: "Colored Pencils on Paper",
+    description: "148 x 223 cm - Colored Pencils on Paper",
     year: "2008",
     width: 223,
     height: 148,
@@ -223,7 +223,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_11.jpg",
-    description: "Colored Pencils on Paper",
+    description: "148 x 223 cm - Colored Pencils on Paper",
     year: "2008",
     width: 223,
     height: 148,
@@ -231,7 +231,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untilted",
     image: "/Untitled_12.jpg",
-    description: "Colored Pencils on Paper",
+    description: "250 x 250 cm - Colored Pencils on Paper",
     year: "2007",
     width: 250,
     height: 250,
@@ -239,7 +239,7 @@ export const artworks: Artwork[] = [
   {
     title: "Holy V",
     image: "/Holy_V_1.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 220 cm - Colored Pencils on Paper",
     year: "2013",
     width: 220,
     height: 150,
@@ -247,7 +247,7 @@ export const artworks: Artwork[] = [
   {
     title: "Holy V",
     image: "/Holy_V_2.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 220 cm - Colored Pencils on Paper",
     year: "2013",
     width: 220,
     height: 150,
@@ -255,7 +255,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untitled",
     image: "/Untitled_13.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2015",
     width: 150,
     height: 150,
@@ -263,7 +263,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untitled",
     image: "/Untitled_14.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2009",
     width: 150,
     height: 150,
@@ -271,7 +271,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untitled",
     image: "/Untitled_15.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2009",
     width: 150,
     height: 150,
@@ -279,7 +279,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untitled",
     image: "/Untitled_16.jpg",
-    description: "Colored Pencils on Paper",
+    description: "150 x 150 cm - Colored Pencils on Paper",
     year: "2009",
     width: 150,
     height: 150,
@@ -288,14 +288,14 @@ export const artworks: Artwork[] = [
     title: "Tree of Life",
     image: "/Tree.png",
     description: "Oil on Canvas",
-    year: "2019",
+    year: "180 x 130 cm - 2019",
     width: 130,
     height: 180,
   },
   {
     title: "Kiev",
     image: "/Kiev.jpg",
-    description: "Ink on Paper",
+    description: "33 x 48 cm - Ink on Paper",
     year: "2016",
     width: 48,
     height: 33,
@@ -303,7 +303,7 @@ export const artworks: Artwork[] = [
   {
     title: "Beverly Hills",
     image: "/Beverly_Hills.jpg",
-    description: "Ink on Paper",
+    description: "33 x 32 cm - Ink on Paper",
     year: "2014",
     width: 32,
     height: 33,
@@ -311,7 +311,7 @@ export const artworks: Artwork[] = [
   {
     title: "New York",
     image: "/New_York.jpg",
-    description: "Ink on Paper",
+    description: "33 x 48 cm - Ink on Paper",
     year: "2014",
     width: 48,
     height: 33,
@@ -319,7 +319,7 @@ export const artworks: Artwork[] = [
   {
     title: "Signagi",
     image: "/Signagi.jpg",
-    description: "Ink on Paper",
+    description: "33 x 48 cm - Ink on Paper",
     year: "2015",
     width: 48,
     height: 33,
@@ -327,7 +327,7 @@ export const artworks: Artwork[] = [
   {
     title: "Krka",
     image: "/Krka.jpg",
-    description: "Ink on Paper",
+    description: "33 x 48 cm - Ink on Paper",
     year: "2004",
     width: 48,
     height: 33,
@@ -335,7 +335,7 @@ export const artworks: Artwork[] = [
   {
     title: "Rome",
     image: "/Rome.jpg",
-    description: "Ink on Paper",
+    description: "33 x 48 cm - Ink on Paper",
     year: "2005",
     width: 48,
     height: 33,
@@ -343,7 +343,7 @@ export const artworks: Artwork[] = [
   {
     title: "Rome",
     image: "/Rome_2.jpg",
-    description: "Ink on Paper",
+    description: "33 x 48 cm - Ink on Paper",
     year: "2005",
     width: 48,
     height: 33,
@@ -351,7 +351,7 @@ export const artworks: Artwork[] = [
   {
     title: "Roadkill",
     image: "/Roadkill.jpg",
-    description: "SKATEBOARD, FOX SKIN AND ACRYLIC SPRAY",
+    description: "40 x 90 x 25 cm - SKATEBOARD, FOX SKIN AND ACRYLIC SPRAY",
     year: "2011",
     width: 90,
     height: 60,
@@ -359,7 +359,7 @@ export const artworks: Artwork[] = [
   {
     title: "Never Give Up",
     image: "/Never_Give_Up.jpg",
-    description: "Taxidermy And Mixed Media",
+    description: "120 x 100 x 70 cm - Taxidermy And Mixed Media",
     year: "2011",
     width: 90,
     height: 130,
@@ -367,7 +367,7 @@ export const artworks: Artwork[] = [
   {
     title: "Time Machine",
     image: "/Time_Machine.jpg",
-    description: "Bronze, Fiber Glasss and Chrome",
+    description: "80 x 160 x 160 cm - Bronze, Fiber Glasss and Chrome",
     year: "2010",
     width: 160,
     height: 100,
@@ -375,7 +375,7 @@ export const artworks: Artwork[] = [
   {
     title: "Hoverboard",
     image: "/Hoverboard.jpg",
-    description: "Bronze, Fiber Glasss and Chrome",
+    description: "107 x 70 x 35 cm - Bronze, Fiber Glasss and Chrome",
     year: "2009",
     width: 100,
     height: 130,
@@ -383,7 +383,7 @@ export const artworks: Artwork[] = [
   {
     title: "Untitled (Triptych)",
     image: "/Untitled_17.jpg",
-    description: "Bronze, Fiber Glasss and Chrome",
+    description: "585 x 467 cm - Bronze, Fiber Glasss and Chrome",
     year: "2020",
     width: 467,
     height: 585,
@@ -394,12 +394,18 @@ export function getArtworks(): Artwork[] {
   return [...artworks].sort((a, b) => {
     if (!a.year || !b.year) return 0
     return b.year.localeCompare(a.year)
-  })
+  }).map(artwork => ({
+    ...artwork,
+    description: artwork.description.toUpperCase()
+  }))
 }
 
 export function getRecentArtworks(limit: number = 2): Artwork[] {
   return [...artworks].sort((a, b) => {
     if (!a.year || !b.year) return 0
     return b.year.localeCompare(a.year)
-  }).slice(0, limit)
+  }).slice(0, limit).map(artwork => ({
+    ...artwork,
+    description: artwork.description.toUpperCase()
+  }))
 }
