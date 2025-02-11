@@ -259,7 +259,7 @@ export default function About() {
                 src={work.image}
                 alt={work.title}
                 fill
-                className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                className="object-contain transition-transform duration-500 ease-in-out group-hover:scale-105"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <h3 className="text-xl font-bold text-white mb-2">{work.title}</h3>
