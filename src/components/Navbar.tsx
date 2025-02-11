@@ -34,7 +34,7 @@ const Navbar = () => {
 
   // Close menu on Escape key press
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         closeMenu();
       }
