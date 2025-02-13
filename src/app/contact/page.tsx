@@ -1,16 +1,15 @@
-'use client'
+'use client';
 
-import { useForm } from 'react-hook-form'
-import { useForm as useFormspree } from '@formspree/react'
-import { useState, useEffect } from 'react'
-import LoadingSpinner from '@/components/LoadingSpinner'
-import { FaInstagram, FaXTwitter } from 'react-icons/fa6'
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { FaInstagram, FaXTwitter } from 'react-icons/fa6';
+import { Button } from '@/components/ui/button';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card"
+} from '@/components/ui/hover-card';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,13 +19,23 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
+} from '@/components/ui/alert-dialog';
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 interface ContactForm {
-  name: string
-  email: string
-  subject: string
-  message: string
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
 }
 
 const socialLinks = [
@@ -34,120 +43,80 @@ const socialLinks = [
     name: 'Instagram',
     icon: <FaInstagram size={20} />,
     href: 'https://www.instagram.com/daragallopin/',
-    description: 'Follow me on Instagram for daily updates, behind-the-scenes content, and work in progress.'
+    description:
+      'Follow me on Instagram for daily updates, behind-the-scenes content, and work in progress.',
   },
   {
     name: 'X',
     icon: <FaXTwitter size={20} />,
     href: 'https://x.com/Daragallopin',
-    description: 'Join the conversation on X (Twitter) for art insights and exhibition announcements.'
-  }
-]
+    description:
+      'Join the conversation on X (Twitter) for art insights and exhibition announcements.',
+  },
+];
 
-interface InputFieldProps {
-  label: string
-  id: string
-  type?: string
-  isTextArea?: boolean
-  registration: {
-    onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-    onBlur: (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void
-    name: string
-    ref: React.RefCallback<HTMLInputElement | HTMLTextAreaElement>
-  }
-  placeholder: string
-  error?: string
-  rows?: number
-}
-
-function InputField({
-  label,
-  id,
-  type = 'text',
-  isTextArea,
-  registration,
-  placeholder,
-  error,
-  rows = 5
-}: InputFieldProps) {
-  const baseClasses =
-    'w-full px-4 py-2 rounded-lg border bg-background/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition duration-200'
-  const errorClass = error ? 'border-destructive' : 'border-input'
-
-  return (
-    <div className="space-y-1">
-      <label htmlFor={id} className="block text-sm font-medium mb-1 text-foreground">
-        {label}
-      </label>
-      {isTextArea ? (
-        <textarea
-          id={id}
-          rows={rows}
-          {...registration}
-          placeholder={placeholder}
-          className={`${baseClasses} ${errorClass}`}
-          aria-invalid={error ? 'true' : 'false'}
-        />
-      ) : (
-        <input
-          id={id}
-          type={type}
-          {...registration}
-          placeholder={placeholder}
-          className={`${baseClasses} ${errorClass}`}
-          aria-invalid={error ? 'true' : 'false'}
-        />
-      )}
-      {error && (
-        <p className="mt-1 text-sm text-destructive" role="alert">
-          {error}
-        </p>
-      )}
-    </div>
-  )
+// Dummy function to simulate sending data to Formspree.
+// Replace this with your actual submission logic.
+async function sendToFormspree(submissionData: ContactForm) {
+  console.log('Sending data to Formspree:', submissionData);
+  return new Promise((resolve) => setTimeout(resolve, 1000));
 }
 
 export default function Contact() {
+  const form = useForm<ContactForm>({
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
+  });
   const {
-    register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting, isDirty }
-  } = useForm<ContactForm>()
+    formState: { isSubmitting, isDirty },
+  } = form;
 
-  const [formspreeState, sendToFormspree] = useFormspree('your-formspree-id')
-  const [showSuccess, setShowSuccess] = useState(false)
-  const [showUnsavedDialog, setShowUnsavedDialog] = useState(false)
-  const [isNavigating, setIsNavigating] = useState(false)
+  // Simulated state for form submission (e.g. from Formspree)
+  const [formspreeState, setFormspreeState] = useState<{
+    submitting: boolean;
+    succeeded: boolean;
+  }>({ submitting: false, succeeded: false });
+
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showUnsavedDialog, setShowUnsavedDialog] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (isDirty && !isNavigating) {
-        e.preventDefault()
-        e.returnValue = ''
+        e.preventDefault();
+        e.returnValue = '';
       }
-    }
+    };
 
-    window.addEventListener('beforeunload', handleBeforeUnload)
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
-  }, [isDirty, isNavigating])
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [isDirty, isNavigating]);
 
   const onSubmit = async (data: ContactForm) => {
-    setIsNavigating(true)
+    setIsNavigating(true);
+    setFormspreeState({ submitting: true, succeeded: false });
+    // Create submissionData (include email as a key if needed)
     const submissionData = {
       ...data,
-      [data.email]: data.email
-    }
-    await sendToFormspree(submissionData)
-    if (formspreeState.succeeded) {
-      reset()
-      setShowSuccess(true)
-    }
-  }
+      [data.email]: data.email,
+    };
+
+    await sendToFormspree(submissionData);
+    setFormspreeState({ submitting: false, succeeded: true });
+    reset();
+    setShowSuccess(true);
+  };
 
   const handleClose = () => {
-    setShowSuccess(false)
-  }
+    setShowSuccess(false);
+  };
 
   return (
     <div className="min-h-screen pt-24 pb-20">
@@ -160,6 +129,7 @@ export default function Contact() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Left Column: Contact Info */}
           <div className="animate__animated animate__fadeInLeft">
             <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
@@ -183,8 +153,8 @@ export default function Contact() {
                       <div className="space-y-2">
                         <h4 className="text-sm font-semibold">Direct Email Contact</h4>
                         <p className="text-sm text-muted-foreground">
-                          Feel free to reach out directly for inquiries about commissions, exhibitions, or collaborations.
-                          I typically respond within 24-48 hours.
+                          Feel free to reach out directly for inquiries about commissions,
+                          exhibitions, or collaborations. I typically respond within 24-48 hours.
                         </p>
                       </div>
                     </HoverCardContent>
@@ -193,7 +163,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
                   <div className="flex items-center space-x-6">
-                    {socialLinks.map(link => (
+                    {socialLinks.map((link) => (
                       <HoverCard key={link.name}>
                         <HoverCardTrigger asChild>
                           <a
@@ -209,7 +179,9 @@ export default function Contact() {
                         <HoverCardContent className="w-80">
                           <div className="space-y-2">
                             <h4 className="text-sm font-semibold">Follow on {link.name}</h4>
-                            <p className="text-sm text-muted-foreground">{link.description}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {link.description}
+                            </p>
                           </div>
                         </HoverCardContent>
                       </HoverCard>
@@ -220,77 +192,113 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* Right Column: Contact Form */}
           <div className="animate__animated animate__fadeInRight">
             <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <InputField
-                  label="Name"
-                  id="name"
-                  registration={register('name', { required: 'Name is required' })}
-                  placeholder="Your Name"
-                  error={errors.name?.message}
-                />
-                <InputField
-                  label="Email"
-                  id="email"
-                  type="email"
-                  registration={register('email', {
-                    required: 'Email is required',
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: 'Please provide a valid email address'
-                    }
-                  })}
-                  placeholder="you@example.com"
-                  error={errors.email?.message}
-                />
-                <InputField
-                  label="Subject"
-                  id="subject"
-                  registration={register('subject', { required: 'Subject is required' })}
-                  placeholder="Let me know what you're curious about..."
-                  error={errors.subject?.message}
-                />
-                <InputField
-                  label="Message"
-                  id="message"
-                  isTextArea
-                  registration={register('message', { required: 'Message is required' })}
-                  placeholder="Write your message here..."
-                  error={errors.message?.message}
-                  rows={5}
-                />
+              <Form {...form}>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    rules={{ required: 'Name is required' }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Your Name" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    rules={{
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: 'Please provide a valid email address',
+                      },
+                    }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="you@example.com" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="subject"
+                    rules={{ required: 'Subject is required' }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Subject</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Let me know what you're curious about..."
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    rules={{ required: 'Message is required' }}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            placeholder="Write your message here..."
+                            rows={5}
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting || formspreeState.submitting}
-                  className="w-full btn-primary"
-                >
-                  {isSubmitting || formspreeState.submitting ? (
-                    <div className="flex items-center">
-                      <LoadingSpinner />
-                      <span className="ml-2">Sending...</span>
-                    </div>
-                  ) : (
-                    'Send Message'
-                  )}
-                </Button>
-
-                {showSuccess && (
-                  <div
-                    className="animate__animated animate__fadeIn mt-4 p-4 border border-accent bg-accent/10 rounded-lg text-center"
-                    role="alert"
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting || formspreeState.submitting}
+                    className="w-full btn-primary"
                   >
-                    Thank you for your message! I’ll get back to you soon.
-                  </div>
-                )}
-              </form>
+                    {isSubmitting || formspreeState.submitting ? (
+                      <div className="flex items-center">
+                        <LoadingSpinner />
+                        <span className="ml-2">Sending...</span>
+                      </div>
+                    ) : (
+                      'Send Message'
+                    )}
+                  </Button>
+
+                  {showSuccess && (
+                    <div
+                      className="animate__animated animate__fadeIn mt-4 p-4 border border-accent bg-accent/10 rounded-lg text-center"
+                      role="alert"
+                    >
+                      Thank you for your message! I’ll get back to you soon.
+                    </div>
+                  )}
+                </form>
+              </Form>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Success Alert Dialog */}
       <AlertDialog open={showSuccess} onOpenChange={handleClose}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -307,6 +315,7 @@ export default function Contact() {
         </AlertDialogContent>
       </AlertDialog>
 
+      {/* Unsaved Changes Alert Dialog */}
       <AlertDialog open={showUnsavedDialog} onOpenChange={setShowUnsavedDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -318,9 +327,7 @@ export default function Contact() {
           <AlertDialogFooter>
             <AlertDialogCancel className="btn-ghost">Stay</AlertDialogCancel>
             <AlertDialogAction
-              onClick={() => {
-                setIsNavigating(true)
-              }}
+              onClick={() => setIsNavigating(true)}
               className="btn-primary"
             >
               Leave
@@ -329,5 +336,5 @@ export default function Contact() {
         </AlertDialogContent>
       </AlertDialog>
     </div>
-  )
+  );
 }

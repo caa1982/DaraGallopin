@@ -8,43 +8,70 @@ import { Button } from "@/components/ui/button";
 import { getArtworks } from "@/data/artworks";
 import PhotoGallery from "@/components/PhotoGallery";
 import "animate.css";
+import { Buffer } from "buffer"; // Required for the blur placeholder
+
+// Define interfaces for your artwork and photo objects
+interface Artwork {
+  image: string;
+  width?: number;
+  height?: number;
+  title?: string;
+  size?: string;
+  description?: string;
+  year?: string;
+}
+
+interface Photo {
+  src: string;
+  width: number;
+  height: number;
+  title: string;
+  size: string;
+  description: string;
+  year: string;
+}
 
 // Rotating Quotes
-const artistQuotes = [
+const artistQuotes: string[] = [
   "Art should be like the stars that delight everyone, from a child to an astrophysicist",
   "I'm like a scuba diver who dives into the abyss of my subconscious, bringing up pearls to share with the world",
   "Life only has value if shared. If not, it's just like a dream",
   "Art is about relationships, multi-layered",
 ];
 
-export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const [currentQuote, setCurrentQuote] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+export default function Home(): JSX.Element {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [currentQuote, setCurrentQuote] = useState<number>(0);
+  const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
 
   useEffect(() => {
     // Simulate a brief loading period
-    const timer = setTimeout(() => setIsLoading(false), 1000);
+    const timer = window.setTimeout(() => setIsLoading(false), 1000);
 
     // Parallax scroll effect for the background
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       const scrolled = window.scrollY;
-      const parallaxElement = document.querySelector(".parallax-bg");
+      const parallaxElement = document.querySelector(
+        ".parallax-bg"
+      ) as HTMLElement | null;
       if (parallaxElement) {
-        (parallaxElement as HTMLElement).style.transform = `translateY(${scrolled * 0.3}px)`;
+        parallaxElement.style.transform = `translateY(${scrolled * 0.3}px)`;
       }
     };
 
     // Mouse move effect for slight rotation of the background
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent): void => {
       const x = (e.clientX / window.innerWidth - 0.5) * 20;
       const y = (e.clientY / window.innerHeight - 0.5) * 20;
       setMousePosition({ x, y });
     };
 
     // Rotate the artist quotes every 5 seconds
-    const quoteInterval = setInterval(() => {
+    const quoteInterval = window.setInterval(() => {
       setCurrentQuote((prev) => (prev + 1) % artistQuotes.length);
     }, 5000);
 
@@ -53,24 +80,24 @@ export default function Home() {
     setIsVisible(true);
 
     return () => {
-      clearTimeout(timer);
-      clearInterval(quoteInterval);
+      window.clearTimeout(timer);
+      window.clearInterval(quoteInterval);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
-  // Prepare Featured Artworks and Photos
-  const photos = useMemo(() => {
-    const featuredWorks = shuffle(getArtworks()).slice(0, 3);
-    return featuredWorks.map((art) => ({
-      src: art.image,
-      width: art.width || 0,
-      height: art.height || 0,
-      title: art.title || "",
-      size: art.size || "",
-      description: art.description || "",
-      year: art.year || "",
+  // Prepare Featured Artworks and map them to Photo objects
+  const photos: Photo[] = useMemo(() => {
+    const featuredWorks: Artwork[] = shuffle(getArtworks()).slice(0, 3);
+    return featuredWorks.map((artwork) => ({
+      src: artwork.image,
+      width: artwork.width ?? 800,
+      height: artwork.height ?? 600,
+      title: artwork.title ?? "",
+      size: artwork.size ?? "",
+      description: artwork.description ?? "",
+      year: artwork.year ?? "",
     }));
   }, []);
 
@@ -146,23 +173,11 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 animate__animated animate__fadeInUp animate__delay-3s">
-            <Button 
-              asChild
-              size="lg"
-              className="w-full sm:w-auto btn-primary"
-            >
-              <Link href="/gallery">
-                Explore Gallery
-              </Link>
+            <Button asChild size="lg" className="w-full sm:w-auto btn-primary">
+              <Link href="/gallery">Explore Gallery</Link>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              className="w-full sm:w-auto btn-secondary"
-            >
-              <Link href="/about">
-                About the Artist
-              </Link>
+            <Button asChild size="lg" className="w-full sm:w-auto btn-secondary">
+              <Link href="/about">About the Artist</Link>
             </Button>
           </div>
 
@@ -189,24 +204,16 @@ export default function Home() {
       {/* FEATURED WORKS SECTION */}
       <main className="max-w-7xl mx-auto text-center mb-12 py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-card">
         <div className="mb-12">
-          <h2 className="text-4xl font-bold text-accent mb-6">
-            Featured Works
-          </h2>
+          <h2 className="text-4xl font-bold text-accent mb-6">Featured Works</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Discover a selection of my most impactful pieces, each telling its own unique story
           </p>
         </div>
 
-        <PhotoGallery 
-          photos={photos}
-          isLoading={isLoading}
-        />
+        <PhotoGallery photos={photos} isLoading={isLoading} />
 
         <div className="mt-12 text-center">
-          <Button
-            asChild
-            className="btn-secondary group"
-          >
+          <Button asChild className="btn-secondary group">
             <Link href="/gallery" className="flex items-center">
               Explore All Works
               <svg

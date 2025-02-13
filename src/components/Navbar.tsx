@@ -4,23 +4,27 @@ import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Button } from "@/components/ui/button";
+import { FaBars, FaTimes } from 'react-icons/fa';
+import { Button } from '@/components/ui/button';
 
-// Custom hook to track scroll position
 function useScrolled(threshold = 10) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > threshold);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > threshold);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [threshold]);
 
   return isScrolled;
 }
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/contact', label: 'Get in Touch' },
+];
 
 const Navbar = () => {
   const isScrolled = useScrolled();
@@ -29,30 +33,20 @@ const Navbar = () => {
 
   const closeMenu = useCallback(() => setIsOpen(false), []);
 
-  // Close menu on route change
+  // Close mobile menu on route change
   useEffect(() => {
     closeMenu();
   }, [pathname, closeMenu]);
 
-  // Close menu on Escape key press
+  // Close mobile menu on Escape key press
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        closeMenu();
-      }
+      if (e.key === 'Escape') closeMenu();
     };
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, [closeMenu]);
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/gallery', label: 'Gallery' },
-    { href: '/contact', label: 'Get in Touch' },
-  ];
-
-  // Navbar background & shadow based on scroll position
   const navClasses = isScrolled
     ? 'bg-background/95 shadow-lg backdrop-blur-sm'
     : 'bg-background/90 backdrop-blur-sm';
@@ -65,7 +59,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo and Brand */}
+          {/* Logo */}
           <Link
             href="/"
             className="flex items-center space-x-3 text-2xl sm:text-2xl md:text-3xl font-bold logo-font transition-transform duration-300 group"
@@ -106,29 +100,29 @@ const Navbar = () => {
                 />
               </Link>
             ))}
-            <Button 
+            <Button
               asChild
-              className={`${isScrolled ? 'btn-primary' : 'bg-transparent border border-foreground/20 text-foreground hover:text-accent hover:border-accent'}`}
+              variant={isScrolled ? 'default' : 'outline'}
+              className={!isScrolled ? 'hover:text-accent hover:border-accent' : ''}
             >
-              <Link href={navLinks[3].href}>
-                {navLinks[3].label}
-              </Link>
+              <Link href={navLinks[3].href}>{navLinks[3].label}</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Toggle (burger) - hidden on desktop */}
           <Button
             onClick={() => setIsOpen((prev) => !prev)}
-            className="btn-ghost md:hidden"
+            variant="ghost"
             size="icon"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
+            className="md:hidden"
           >
             {isOpen ? (
-              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              <FaTimes className="h-6 w-6" aria-hidden="true" />
             ) : (
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              <FaBars className="h-6 w-6" aria-hidden="true" />
             )}
           </Button>
         </div>
@@ -156,7 +150,8 @@ const Navbar = () => {
               <Button
                 key={link.href}
                 asChild
-                className={`w-full justify-start ${pathname === link.href ? 'btn-primary' : 'btn-ghost'}`}
+                variant={pathname === link.href ? 'default' : 'ghost'}
+                className="w-full justify-start"
               >
                 <Link
                   href={link.href}

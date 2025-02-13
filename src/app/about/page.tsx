@@ -1,24 +1,23 @@
-'use client'
+'use client';
 
-import { useInView } from 'react-intersection-observer'
-import Image from 'next/image'
-import Link from 'next/link'
-import { getRecentArtworks } from '@/data/artworks'
-import PhotoGallery from '@/components/PhotoGallery'
-import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import Image from 'next/image';
+import Link from 'next/link';
+import { getRecentArtworks } from '@/data/artworks';
+import PhotoGallery from '@/components/PhotoGallery';
+import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   publications,
   soloExhibitions,
   groupExhibitions,
   timelineEvents,
-} from '@/data/about-data'
+} from '@/data/about-data';
 
 interface ImageWithHoverProps {
-  src: string
-  alt: string
-  priority?: boolean
+  src: string;
+  alt: string;
+  priority?: boolean;
 }
 
 function ImageWithHover({ src, alt, priority = false }: ImageWithHoverProps) {
@@ -33,13 +32,13 @@ function ImageWithHover({ src, alt, priority = false }: ImageWithHoverProps) {
       />
       <div className="absolute inset-0 bg-black/30 transition-colors duration-700 ease-in-out group-hover:bg-black/50" />
     </div>
-  )
+  );
 }
 
 interface TimelineItemProps {
-  year: string
-  text: string
-  detail: string
+  year: string;
+  text: string;
+  detail: string;
 }
 
 function TimelineItem({ year, text, detail }: TimelineItemProps) {
@@ -55,17 +54,17 @@ function TimelineItem({ year, text, detail }: TimelineItemProps) {
         <p className="text-sm text-foreground/80 leading-relaxed">{detail}</p>
       </div>
     </div>
-  )
+  );
 }
 
 interface Exhibition {
-  year: string
-  title: string
+  year: string;
+  title: string;
 }
 
 interface ExhibitionCardProps {
-  title: string
-  exhibitions: Exhibition[]
+  title: string;
+  exhibitions: Exhibition[];
 }
 
 function ExhibitionCard({ title, exhibitions }: ExhibitionCardProps) {
@@ -94,11 +93,11 @@ function ExhibitionCard({ title, exhibitions }: ExhibitionCardProps) {
         ))}
       </CardContent>
     </Card>
-  )
+  );
 }
 
 interface CTAButtonsProps {
-  centered?: boolean
+  centered?: boolean;
 }
 
 function CTAButtons({ centered = false }: CTAButtonsProps) {
@@ -115,18 +114,12 @@ function CTAButtons({ centered = false }: CTAButtonsProps) {
         <Link href="/contact">Commission Art</Link>
       </Button>
     </div>
-  )
+  );
 }
 
 export default function About() {
-  const { ref: bioRef, inView: bioInView } = useInView({ triggerOnce: true })
-  const { ref: timelineRef, inView: timelineInView } = useInView({ triggerOnce: true })
-  const { ref: publicationsRef, inView: publicationsInView } = useInView({ triggerOnce: true })
-  const { ref: exhibitionsRef, inView: exhibitionsInView } = useInView({ triggerOnce: true })
-  const { ref: galleryRef, inView: galleryInView } = useInView({ triggerOnce: true })
-
   // Get recent works from the centralized data
-  const recentWorks = getRecentArtworks(2)
+  const recentWorks = getRecentArtworks(2);
   const photos = recentWorks.map((art) => ({
     src: art.image,
     width: art.width || 3,
@@ -135,7 +128,7 @@ export default function About() {
     size: art.size || '',
     description: art.description || '',
     year: art.year || '',
-  }))
+  }));
 
   return (
     <main className="px-4 md:px-8 text-foreground pb-24 space-y-8">
@@ -144,7 +137,6 @@ export default function About() {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8">
           {/* Artist Image with Hover Effect */}
           <ImageWithHover src="/Dara.jpg" alt="Portrait of Dara Gallopin" priority />
-
           {/* Intro Text + Call to Action */}
           <div className="flex-1 flex flex-col gap-6">
             <h1 className="text-4xl md:text-6xl sm:text-left text-center font-playfair font-bold leading-tight">
@@ -160,12 +152,7 @@ export default function About() {
       </section>
 
       {/* Biography Section */}
-      <Card
-        ref={bioRef}
-        className={`max-w-7xl mx-auto transition-all duration-700 transform ${
-          bioInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
+      <Card className="max-w-7xl mx-auto">
         <CardHeader>
           <CardTitle className="text-3xl font-playfair font-bold text-accent">
             Biography
@@ -219,16 +206,11 @@ export default function About() {
       </Card>
 
       {/* Key Events & Education Timeline */}
-      <section
-        ref={timelineRef}
-        className={`max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm transition-all duration-700 transform ${
-          timelineInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <h2 className="text-3xl font-playfair font-bold text-accent mb-6 px-4">
+      <section className="max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
+        <h2 className="text-3xl font-playfair font-bold text-accent mb-6">
           Key Events & Education
         </h2>
-        <div className="relative border-l border-accent/40 pl-6 space-y-6 text-foreground/90 px-4">
+        <div className="relative border-l border-accent/40 pl-6 space-y-6 text-foreground/90">
           {timelineEvents.map((event, idx) => (
             <TimelineItem key={idx} {...event} />
           ))}
@@ -236,16 +218,11 @@ export default function About() {
       </section>
 
       {/* Publications */}
-      <section
-        ref={publicationsRef}
-        className={`max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm transition-all duration-700 transform ${
-          publicationsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <h2 className="text-3xl font-playfair font-bold text-accent mb-6 px-4">
+      <section className="max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
+        <h2 className="text-3xl font-playfair font-bold text-accent mb-6">
           Publications
         </h2>
-        <div className="space-y-6 text-foreground/90 px-4">
+        <div className="space-y-6 text-foreground/90">
           {publications.map((pub, index) => (
             <div key={index}>
               <h3 className="font-semibold text-accent">{pub.year}</h3>
@@ -260,12 +237,7 @@ export default function About() {
       </section>
 
       {/* Exhibitions */}
-      <Card
-        ref={exhibitionsRef}
-        className={`max-w-7xl mx-auto transition-all duration-700 transform ${
-          exhibitionsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
+      <Card className="max-w-7xl mx-auto">
         <CardHeader>
           <CardTitle className="text-3xl font-playfair font-bold text-accent">
             Exhibitions
@@ -280,26 +252,21 @@ export default function About() {
       </Card>
 
       {/* Recent Works / Gallery Preview */}
-      <section
-        ref={galleryRef}
-        className={`max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm transition-all duration-700 transform ${
-          galleryInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <h2 className="text-3xl font-playfair font-bold text-accent mb-6 px-4">
+      <section className="max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
+        <h2 className="text-3xl font-playfair font-bold text-accent mb-6">
           Recent Works
         </h2>
-        <div className="px-4">
+        <div>
           <PhotoGallery
             photos={photos}
             isLoading={false}
             columns={(containerWidth) => (containerWidth < 640 ? 1 : 2)}
           />
         </div>
-        <div className="mt-8 flex justify-center px-4">
+        <div className="mt-8 flex justify-center">
           <CTAButtons centered />
         </div>
       </section>
     </main>
-  )
+  );
 }
