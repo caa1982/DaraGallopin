@@ -20,8 +20,6 @@ const marketplaceLinks = [
   { href: 'https://www.saatchiart.com/', label: 'Saatchi Art' },
   { href: 'https://www.artfinder.com/', label: 'ArtFinder' },
   { href: 'https://www.singulart.com/', label: 'Singulart' },
-  { href: 'https://opensea.io/', label: 'OpenSea' },
-  { href: 'https://foundation.app/', label: 'Foundation' },
 ];
 
 const Footer = () => {
