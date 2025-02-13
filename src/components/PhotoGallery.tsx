@@ -56,7 +56,7 @@ export default function PhotoGallery({
     { photo, width, height }: { photo: Photo; width: number; height: number }
   ) => {
     return (
-      <div className="group relative w-full overflow-hidden rounded-lg cursor-pointer transition-shadow duration-300 shadow-md shadow-black/20 hover:shadow-xl hover:shadow-black/40 dark:shadow-white/10 dark:hover:shadow-white/30">
+      <div className="group relative w-full overflow-hidden rounded-lg cursor-pointer transition-shadow duration-300 shadow-md shadow-black/20 hover:shadow-lg hover:shadow-black/40 dark:shadow-white/20 dark:hover:shadow-white/30">
         <div style={{ aspectRatio: `${width} / ${height}` }} className="relative">
           <Image
             fill

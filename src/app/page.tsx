@@ -154,7 +154,7 @@ export default function Home(): JSX.Element {
               <span className="text-accent mx-1">•</span>
               <span className="inline-block px-2">Visual Storyteller</span>
             </p>
-            <div className="min-h-[100px] flex items-center justify-center backdrop-blur-sm rounded-lg px-3 sm:px-6 py-4">
+            <div className="min-h-[100px] flex items-center justify-center px-3 sm:px-6 py-4">
               <p
                 className={`text-sm sm:text-base md:text-lg text-foreground/90 italic max-w-3xl mx-auto transition-all duration-500 font-light animate__animated ${
                   isVisible ? "animate__fadeIn animate__delay-2s" : ""
