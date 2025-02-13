@@ -4,15 +4,15 @@ import 'animate.css';
 
 const marketplaces = [
   {
-    name: "Saatchi Art",
-    description: "Premier online art gallery for discovering and collecting fine art.",
-    url: "https://www.saatchiart.com/",
+    name: "Artsy",
+    description: "Leading platform for discovering and collecting contemporary art.",
+    url: "https://www.artsy.net/artist/dara-gallopin",
     type: "traditional"
   },
   {
-    name: "ArtFinder",
-    description: "Online marketplace connecting independent artists with art lovers.",
-    url: "https://www.artfinder.com/",
+    name: "NFT Bazl",
+    description: "Innovative marketplace bridging traditional and digital art worlds.",
+    url: "https://market.nftbazl.com/Dara-Gallopin",
     type: "traditional"
   },
   {
