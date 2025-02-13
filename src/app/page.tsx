@@ -128,7 +128,7 @@ export default function Home(): JSX.Element {
           <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-8 animate__animated animate__fadeInDown">
             <div className="inline-block relative">
               <div className="absolute inset-0 blur-2xl opacity-30 bg-gradient-brand" />
-              <h1 className="relative text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold heading-gradient leading-tight">
+              <h1 className="relative text-5xl sm:text-6xl md:text-6xl lg:text-7xl xl:text-7xl 2xl:text-8xl font-bold heading-gradient leading-tight">
                 Dara Gallopin
               </h1>
             </div>
@@ -149,9 +149,9 @@ export default function Home(): JSX.Element {
               }`}
             >
               <span className="inline-block px-2">Swiss-Iranian Artist</span>
-              <span className="text-accent hidden sm:inline mx-1">•</span>
+              <span className="text-accent mx-1">•</span>
               <span className="inline-block px-2">Global Explorer</span>
-              <span className="text-accent hidden sm:inline mx-1">•</span>
+              <span className="text-accent mx-1">•</span>
               <span className="inline-block px-2">Visual Storyteller</span>
             </p>
             <div className="min-h-[100px] flex items-center justify-center backdrop-blur-sm rounded-lg px-3 sm:px-6 py-4">
