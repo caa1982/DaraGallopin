@@ -8,19 +8,21 @@ import FeaturedWorks from "@/components/FeaturedWorks";
 import "animate.css";
 import { Buffer } from "buffer";
 
-function useParallax() {
+type MousePosition = { x: number; y: number };
+
+function useParallax(): React.RefObject<HTMLDivElement> {
   const ref = useRef<HTMLDivElement | null>(null);
   const [scrollY, setScrollY] = useState(0);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState<MousePosition>({ x: 0, y: 0 });
 
   useEffect(() => {
     let frameId: number;
 
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       setScrollY(window.scrollY);
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e: MouseEvent): void => {
       const x = (e.clientX / window.innerWidth - 0.5) * 20;
       const y = (e.clientY / window.innerHeight - 0.5) * 20;
       setMousePos({ x, y });
@@ -28,13 +30,12 @@ function useParallax() {
 
     const animate = () => {
       if (ref.current) {
-        const transformString = `
+        ref.current.style.transform = `
           perspective(1000px)
           rotateX(${mousePos.y * 0.02}deg)
           rotateY(${mousePos.x * 0.02}deg)
           translateY(${scrollY * 0.3}px)
         `;
-        ref.current.style.transform = transformString;
       }
       frameId = requestAnimationFrame(animate);
     };
@@ -48,7 +49,7 @@ function useParallax() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(frameId);
     };
-  }, [mousePos.x, mousePos.y, scrollY]);
+  }, [mousePos, scrollY]);
 
   return ref;
 }
@@ -68,7 +69,7 @@ export default function Home(): JSX.Element {
 
   const parallaxRef = useParallax();
 
-  const scrollToFeaturedWorks = () => {
+  const scrollToFeaturedWorks = (): void => {
     if (featuredWorksRef.current) {
       const navbarHeight = 64;
       const elementPosition = featuredWorksRef.current.getBoundingClientRect().top;
