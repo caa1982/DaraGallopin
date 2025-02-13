@@ -12,6 +12,8 @@ import {
   soloExhibitions,
   groupExhibitions,
   timelineEvents,
+  biography,
+  heroContent,
 } from '@/data/about-data';
 
 interface ImageWithHoverProps {
@@ -133,8 +135,7 @@ export default function About() {
               About <span className="text-accent">Dara Gallopin</span>
             </h1>
             <p className="text-base sm:text-lg lg:text-xl sm:text-left text-center leading-relaxed tracking-wide text-foreground/90">
-              A Swiss-Iranian artist whose work transcends cultural boundaries and traditional
-              mediums, creating a unique dialogue between heritage and contemporary expression.
+              {heroContent.introText}
             </p>
             <CTAButtons />
           </div>
@@ -151,24 +152,14 @@ export default function About() {
         <CardContent>
         <ScrollArea className="h-[300px] sm:h-[400px] rounded-md">
           <div className="space-y-4 sm:space-y-6 text-foreground leading-relaxed pr-4 text-sm sm:text-base">
-              <p>
-                {"I am an interdisciplinary artist of Swiss-Iranian heritage, born in 1982 and raised in Geneva, Switzerland. Throughout my adult life, I've lived in diverse locations across the globe—including England, China, New York, and Western Europe—and I am currently based in Ukraine."}
-              </p>
-              <p>
-                {"This intercultural and nomadic existence has endowed me with a profound appreciation for diversity and an expansive approach to my artistic practice. My multidisciplinary work encompasses geometric abstract drawings, influenced by my formal training at L’École Cantonale d’Art de Lausanne (ECAL), where I earned my Bachelor of Fine Arts degree. My oeuvre also includes sculptures such as <em>Hoverboard</em> (2009) and <em>Never Give Up</em> (2010), as well as more recent figurative paintings."}
-              </p>
-              <p>
-                {"Each piece in my diverse body of work reflects narratives of multi-dimensional growth. Identifying as a modern nomad, I utilize a wide array of tools and technologies, working across various media and transcending borders and languages."}
-              </p>
-              <p>
-                In works like <em>Untitled (Triptych)</em> (2020), I reference, subvert, and reimagine my past pieces—transforming explosive splashes from earlier drawings into liquefied forms that bridge 2D and 3D processes. By integrating techniques ranging from plasticine models and bronze casts to 3D scanning, painting, and digital manipulation, I craft surreal yet dynamic compositions that blur the lines between fantasy, the virtual, and the human.
-              </p>
+              <p>{biography.intro}</p>
+              <p>{biography.background}</p>
+              <p>{biography.approach}</p>
+              <p>{biography.recentWork}</p>
               <blockquote className="border-l-4 border-accent pl-4 italic text-foreground/90">
-                &ldquo;I&rsquo;m like a scuba diver who dives into the abyss of my subconscious... Life only has value if shared. Art is about relationships, multi-layered... My art is open to all.&rdquo;
+                &ldquo;{biography.quote}&rdquo;
               </blockquote>
-              <p>
-                My forward-moving practice envisions a future that is both expansive and inclusive, unifying elements from minimalism, digital technology, and figurative painting. Consistent with an ethos of continual progression and learning, my process remains “democratic” and open—a testament to art’s power to unify rather than discriminate.
-              </p>
+              <p>{biography.philosophy}</p>
             </div>
           </ScrollArea>
         </CardContent>

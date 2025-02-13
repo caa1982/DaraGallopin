@@ -140,3 +140,16 @@ export const timelineEvents =[
     "detail": "Creating new works influenced by Balinese culture and the tropical environment."
   }
 ]
+
+export const biography = {
+  intro: "I am an interdisciplinary artist of Swiss-Iranian heritage, born in 1982 and raised in Geneva, Switzerland. Throughout my adult life, I've lived in diverse locations across the globe—including England, China, New York, and Western Europe—and I am currently based in Bali.",
+  background: "This intercultural and nomadic existence has endowed me with a profound appreciation for diversity and an expansive approach to my artistic practice. My multidisciplinary work encompasses geometric abstract drawings, influenced by my formal training at L'École Cantonale d'Art de Lausanne (ECAL), where I earned my Bachelor of Fine Arts degree. My oeuvre also includes sculptures such as Hoverboard (2009) and Never Give Up (2010), as well as more recent figurative paintings.",
+  approach: "Each piece in my diverse body of work reflects narratives of multi-dimensional growth. Identifying as a modern nomad, I utilize a wide array of tools and technologies, working across various media and transcending borders and languages.",
+  recentWork: "In works like Untitled (Triptych) (2020), I reference, subvert, and reimagine my past pieces—transforming explosive splashes from earlier drawings into liquefied forms that bridge 2D and 3D processes. By integrating techniques ranging from plasticine models and bronze casts to 3D scanning, painting, and digital manipulation, I craft surreal yet dynamic compositions that blur the lines between fantasy, the virtual, and the human.",
+  quote: "I'm like a scuba diver who dives into the abyss of my subconscious... Life only has value if shared. Art is about relationships, multi-layered... My art is open to all.",
+  philosophy: "My forward-moving practice envisions a future that is both expansive and inclusive, unifying elements from minimalism, digital technology, and figurative painting. Consistent with an ethos of continual progression and learning, my process remains democratic and open—a testament to art's power to unify rather than discriminate."
+}
+
+export const heroContent = {
+  introText: "A Swiss-Iranian artist whose work transcends cultural boundaries and traditional mediums, creating a unique dialogue between heritage and contemporary expression."
+};
