@@ -17,16 +17,6 @@ const artistQuotes = [
   "Art is about relationships, multi-layered",
 ];
 
-interface Photo {
-  src: string;
-  width: number;
-  height: number;
-  title?: string;
-  size?: string;
-  description?: string;
-  year?: string;
-}
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
@@ -210,7 +200,6 @@ export default function Home() {
         <PhotoGallery 
           photos={photos}
           isLoading={isLoading}
-          onPhotoClick={() => window.location.href = "/gallery"}
         />
 
         <div className="mt-12 text-center">
