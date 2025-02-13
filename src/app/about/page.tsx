@@ -2,11 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { getRecentArtworks } from '@/data/artworks';
-import PhotoGallery from '@/components/PhotoGallery';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import RecentWorks from '@/components/RecentWorks';
 import {
   publications,
   soloExhibitions,
@@ -118,31 +117,21 @@ function CTAButtons({ centered = false }: CTAButtonsProps) {
 }
 
 export default function About() {
-  // Get recent works from the centralized data
-  const recentWorks = getRecentArtworks(2);
-  const photos = recentWorks.map((art) => ({
-    src: art.image,
-    width: art.width || 3,
-    height: art.height || 4,
-    title: art.title || '',
-    size: art.size || '',
-    description: art.description || '',
-    year: art.year || '',
-  }));
-
   return (
-    <main className="px-4 md:px-8 text-foreground pb-24 space-y-8">
+    <main className="px-4 md:px-6 lg:px-8 text-foreground pb-16 sm:pb-24 space-y-6 sm:space-y-8 lg:space-y-12">
       {/* Hero / Top Section */}
-      <section className="relative overflow-hidden pb-6 pt-24">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8">
+      <section className="relative overflow-hidden pb-6 pt-16 sm:pt-24">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
           {/* Artist Image with Hover Effect */}
-          <ImageWithHover src="/Dara.jpg" alt="Portrait of Dara Gallopin" priority />
+          <div className="w-full max-w-sm lg:max-w-md mx-auto lg:mx-0">
+            <ImageWithHover src="/Dara.jpg" alt="Portrait of Dara Gallopin" priority />
+          </div>
           {/* Intro Text + Call to Action */}
-          <div className="flex-1 flex flex-col gap-6">
-            <h1 className="text-4xl md:text-6xl sm:text-left text-center font-playfair font-bold leading-tight">
+          <div className="flex-1 flex flex-col gap-4 sm:gap-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl sm:text-left text-center font-playfair font-bold leading-tight">
               About <span className="text-accent">Dara Gallopin</span>
             </h1>
-            <p className="text-lg sm:text-left text-center leading-relaxed tracking-wide text-foreground/90">
+            <p className="text-base sm:text-lg lg:text-xl sm:text-left text-center leading-relaxed tracking-wide text-foreground/90">
               A Swiss-Iranian artist whose work transcends cultural boundaries and traditional
               mediums, creating a unique dialogue between heritage and contemporary expression.
             </p>
@@ -153,14 +142,14 @@ export default function About() {
 
       {/* Biography Section */}
       <Card className="max-w-7xl mx-auto">
-        <CardHeader>
-          <CardTitle className="text-3xl font-playfair font-bold text-accent">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-2xl sm:text-3xl font-playfair font-bold text-accent">
             Biography
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[400px] rounded-md">
-            <div className="space-y-6 text-foreground leading-relaxed pr-4">
+          <ScrollArea className="h-[300px] sm:h-[400px] rounded-md">
+            <div className="space-y-4 sm:space-y-6 text-foreground leading-relaxed pr-4 text-sm sm:text-base">
               <p>
                 Dara Gallopin is an interdisciplinary artist of Swiss-Iranian heritage, born in 1982
                 and raised in Geneva, Switzerland. He has spent his adult years living in diverse
@@ -206,11 +195,11 @@ export default function About() {
       </Card>
 
       {/* Key Events & Education Timeline */}
-      <section className="max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
-        <h2 className="text-3xl font-playfair font-bold text-accent mb-6">
+      <section className="max-w-7xl mx-auto py-8 sm:py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
+        <h2 className="text-2xl sm:text-3xl font-playfair font-bold text-accent mb-4 sm:mb-6">
           Key Events & Education
         </h2>
-        <div className="relative border-l border-accent/40 pl-6 space-y-6 text-foreground/90">
+        <div className="relative border-l border-accent/40 pl-4 sm:pl-6 space-y-4 sm:space-y-6 text-foreground/90">
           {timelineEvents.map((event, idx) => (
             <TimelineItem key={idx} {...event} />
           ))}
@@ -218,11 +207,11 @@ export default function About() {
       </section>
 
       {/* Publications */}
-      <section className="max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
-        <h2 className="text-3xl font-playfair font-bold text-accent mb-6">
+      <section className="max-w-7xl mx-auto py-8 sm:py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
+        <h2 className="text-2xl sm:text-3xl font-playfair font-bold text-accent mb-4 sm:mb-6">
           Publications
         </h2>
-        <div className="space-y-6 text-foreground/90">
+        <div className="space-y-4 sm:space-y-6 text-foreground/90 text-sm sm:text-base">
           {publications.map((pub, index) => (
             <div key={index}>
               <h3 className="font-semibold text-accent">{pub.year}</h3>
@@ -239,34 +228,20 @@ export default function About() {
       {/* Exhibitions */}
       <Card className="max-w-7xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-3xl font-playfair font-bold text-accent">
+          <CardTitle className="text-2xl sm:text-3xl font-playfair font-bold text-accent">
             Exhibitions
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <ExhibitionCard title="Solo Exhibitions" exhibitions={soloExhibitions} />
             <ExhibitionCard title="Group Exhibitions" exhibitions={groupExhibitions} />
           </div>
         </CardContent>
       </Card>
 
-      {/* Recent Works / Gallery Preview */}
-      <section className="max-w-7xl mx-auto py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
-        <h2 className="text-3xl font-playfair font-bold text-accent mb-6">
-          Recent Works
-        </h2>
-        <div>
-          <PhotoGallery
-            photos={photos}
-            isLoading={false}
-            columns={(containerWidth) => (containerWidth < 640 ? 1 : 2)}
-          />
-        </div>
-        <div className="mt-8 flex justify-center">
-          <CTAButtons centered />
-        </div>
-      </section>
+      {/* Recent Works Section */}
+      <RecentWorks isLoading={false} />
     </main>
   );
 }

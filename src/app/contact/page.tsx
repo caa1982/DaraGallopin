@@ -119,32 +119,31 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
+    <div className="min-h-screen pt-16 sm:pt-24 pb-12 sm:pb-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold mb-4">Contact Me</h1>
-          <p className="text-lg text-muted-foreground">
-            Have questions or just want to say hello? I’d love to hear from you.
+        <div className="text-center mb-8 sm:mb-10">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Contact Me</h1>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+            Have questions or just want to say hello? I'd love to hear from you.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {/* Left Column: Contact Info */}
           <div className="animate__animated animate__fadeInLeft">
-            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md dark:shadow-white/5 dark:hover:shadow-white/10 transition-shadow duration-300">
-              <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
-              <div className="space-y-6">
+            <div className="bg-card border-border p-4 sm:p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md dark:shadow-white/5 dark:hover:shadow-white/10 transition-shadow duration-300">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Get in Touch</h2>
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">Location</h3>
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">Location</h3>
                   <p className="text-muted-foreground">Bali, Indonesia</p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-2">Email</h3>
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">Email</h3>
                   <HoverCard>
                     <HoverCardTrigger asChild>
                       <a
                         href="mailto:contact@daragallopin.com"
-                        className="text-accent hover:text-accent/80 transition-colors"
+                        className="text-accent hover:text-accent/80 transition-colors break-all"
                       >
                         contact@daragallopin.com
                       </a>
@@ -161,8 +160,8 @@ export default function Contact() {
                   </HoverCard>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
-                  <div className="flex items-center space-x-6">
+                  <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Follow Me</h3>
+                  <div className="flex items-center space-x-4 sm:space-x-6">
                     {socialLinks.map((link) => (
                       <HoverCard key={link.name}>
                         <HoverCardTrigger asChild>
@@ -170,7 +169,7 @@ export default function Contact() {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-foreground hover:text-accent transition-colors"
+                            className="text-foreground hover:text-accent transition-colors p-2 hover:bg-accent/10 rounded-full"
                             aria-label={`Follow on ${link.name}`}
                           >
                             {link.icon}
@@ -194,10 +193,10 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <div className="animate__animated animate__fadeInRight">
-            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md dark:shadow-white/5 dark:hover:shadow-white/10 transition-shadow duration-300">
-              <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
+            <div className="bg-card border-border p-4 sm:p-6 md:p-8 rounded-lg shadow-sm hover:shadow-md dark:shadow-white/5 dark:hover:shadow-white/10 transition-shadow duration-300">
+              <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Send a Message</h2>
               <Form {...form}>
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                   <FormField
                     control={form.control}
                     name="name"
@@ -271,10 +270,10 @@ export default function Contact() {
                   <Button
                     type="submit"
                     disabled={isSubmitting || formspreeState.submitting}
-                    className="w-full btn-primary"
+                    className="w-full sm:w-auto px-8"
                   >
                     {isSubmitting || formspreeState.submitting ? (
-                      <div className="flex items-center">
+                      <div className="flex items-center justify-center">
                         <LoadingSpinner />
                         <span className="ml-2">Sending...</span>
                       </div>
@@ -285,10 +284,10 @@ export default function Contact() {
 
                   {showSuccess && (
                     <div
-                      className="animate__animated animate__fadeIn mt-4 p-4 border border-accent bg-accent/10 rounded-lg text-center"
+                      className="animate__animated animate__fadeIn mt-4 p-3 sm:p-4 border border-accent bg-accent/10 rounded-lg text-center text-sm sm:text-base"
                       role="alert"
                     >
-                      Thank you for your message! I’ll get back to you soon.
+                      Thank you for your message! I'll get back to you soon.
                     </div>
                   )}
                 </form>

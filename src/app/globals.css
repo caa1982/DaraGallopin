@@ -149,6 +149,26 @@
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
+
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-responsive {
+    @apply text-base sm:text-lg lg:text-xl;
+  }
+
+  .heading-responsive {
+    @apply text-2xl sm:text-3xl lg:text-4xl xl:text-5xl;
+  }
+
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .section-padding {
+    @apply py-8 sm:py-12 lg:py-16;
+  }
 }
 
 @keyframes fadeIn {

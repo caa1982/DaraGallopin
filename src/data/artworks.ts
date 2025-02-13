@@ -90,6 +90,7 @@ export const artworks: Artwork[] = [
     width: 6,
     height: 9,
     description: "oil on canvas",
+    isFeatured: true,
     size: "90 x 60 cm",
     year: "2018"
   },
@@ -109,6 +110,7 @@ export const artworks: Artwork[] = [
     height: 90,
     description: "oil and Gold Leaf on Wonden Box",
     size: "90 x 60 cm",
+    isFeatured: true,
     year: "2018"
   },
   {
@@ -128,6 +130,7 @@ export const artworks: Artwork[] = [
     size: "150 x 250 cm",
     year: "2007",
     width: 250,
+    isFeatured: true,
     height: 150,
   },
   {
@@ -137,6 +140,7 @@ export const artworks: Artwork[] = [
     size: "90 x 60 cm",
     year: "2018",
     width: 10,
+    isFeatured: true,
     height: 10,
   },
   {
@@ -397,6 +401,7 @@ export const artworks: Artwork[] = [
     description: "SKATEBOARD, FOX SKIN AND ACRYLIC SPRAY",
     size: "40 x 90 x 25 cm",
     year: "2011",
+    isFeatured: true,
     width: 90,
     height: 60,
   },
@@ -406,6 +411,7 @@ export const artworks: Artwork[] = [
     description: "Taxidermy And Mixed Media",
     size: "120 x 100 x 70 cm",
     year: "2011",
+    isFeatured: true,
     width: 90,
     height: 130,
   },
@@ -423,6 +429,7 @@ export const artworks: Artwork[] = [
     image: "/Hoverboard.jpg",
     description: "Bronze, Fiber Glasss and Chrome",
     size: "107 x 70 x 35 cm",
+    isFeatured: true,
     year: "2009",
     width: 100,
     height: 130,

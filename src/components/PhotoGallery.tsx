@@ -34,9 +34,10 @@ export default function PhotoGallery({
   photos, 
   isLoading = false, 
   columns = (containerWidth) => {
-    if (containerWidth < 500) return 1;
-    if (containerWidth < 900) return 2;
-    return 3;
+    if (containerWidth < 400) return 1;
+    if (containerWidth < 640) return 2;
+    if (containerWidth < 1024) return 3;
+    return 4;
   }
 }: PhotoGalleryProps) {
   const [index, setIndex] = useState(-1);
@@ -55,77 +56,40 @@ export default function PhotoGallery({
     { photo, width, height }: { photo: Photo; width: number; height: number }
   ) => {
     return (
-      <div
-        className="
-          group
-          relative
-          w-full
-          overflow-hidden
-          rounded-lg
-          cursor-pointer
-          transition-shadow
-          duration-300
-          shadow-md
-          shadow-black/20
-          hover:shadow-xl
-          hover:shadow-black/40
-          dark:shadow-white/10
-          dark:hover:shadow-white/30
-        "
-      >
+      <div className="group relative w-full overflow-hidden rounded-lg cursor-pointer transition-shadow duration-300 shadow-md shadow-black/20 hover:shadow-xl hover:shadow-black/40 dark:shadow-white/10 dark:hover:shadow-white/30">
         <div style={{ aspectRatio: `${width} / ${height}` }} className="relative">
           <Image
             fill
             src={photo.src}
             alt={alt || "Artwork"}
             title={title}
-            sizes={sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"}
+            sizes="(max-width: 400px) 100vw, (max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             quality={85}
             loading="lazy"
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
               '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="hsl(var(--background))"/></svg>'
             ).toString("base64")}`}
-            className="
-              transition-transform
-              duration-300
-              ease-in-out
-              group-hover:scale-105
-            "
+            className="transition-transform duration-300 ease-in-out group-hover:scale-105 object-cover"
           />
         </div>
   
-        {/* Overlay with title and description */}
-        <div
-          className="
-            absolute
-            inset-0
-            bg-gradient-to-t
-            from-background/95
-            via-transparent
-            to-transparent
-            dark:from-background/95
-            opacity-0
-            group-hover:opacity-100
-            transition-opacity
-            duration-300
-            flex
-            items-end
-          "
-        >
-          <div className="p-4 w-full bg-card/70 dark:bg-card/90 backdrop-blur-sm rounded-b-lg">
-            {photo.title && <h1 className="font-semibold text-foreground">{photo.title}</h1>}
-            {photo.description && <h3 className="text-sm text-foreground/90">{photo.description}</h3>}
-            {photo.size && <h4 className="text-xs text-muted-foreground mt-1">{photo.size}</h4>}
-            {photo.year && <p className="text-xs text-muted-foreground mt-1">{photo.year}</p>}
+        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent dark:from-background/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+          <div className="p-3 sm:p-4 w-full bg-card/70 dark:bg-card/90 backdrop-blur-sm rounded-b-lg">
+            {photo.title && <h1 className="font-semibold text-foreground text-sm sm:text-base">{photo.title}</h1>}
+            {photo.description && <h3 className="text-xs sm:text-sm text-foreground/90">{photo.description}</h3>}
+            {(photo.size || photo.year) && (
+              <div className="text-xs mt-1 space-x-2">
+                {photo.size && <span className="text-muted-foreground">{photo.size}</span>}
+                {photo.year && <span className="text-muted-foreground">{photo.year}</span>}
+              </div>
+            )}
           </div>
         </div>
       </div>
     );
   };
   
-  
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-[600px] w-full">

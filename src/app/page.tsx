@@ -1,35 +1,12 @@
 "use client";
 
-import { useEffect, useState, Fragment, useMemo } from "react";
+import { useEffect, useState, Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { shuffle } from "lodash";
 import { Button } from "@/components/ui/button";
-import { getArtworks } from "@/data/artworks";
-import PhotoGallery from "@/components/PhotoGallery";
+import FeaturedWorks from "@/components/FeaturedWorks";
 import "animate.css";
-import { Buffer } from "buffer"; // Required for the blur placeholder
-
-// Define interfaces for your artwork and photo objects
-interface Artwork {
-  image: string;
-  width?: number;
-  height?: number;
-  title?: string;
-  size?: string;
-  description?: string;
-  year?: string;
-}
-
-interface Photo {
-  src: string;
-  width: number;
-  height: number;
-  title: string;
-  size: string;
-  description: string;
-  year: string;
-}
+import { Buffer } from "buffer";
 
 // Rotating Quotes
 const artistQuotes: string[] = [
@@ -87,20 +64,6 @@ export default function Home(): JSX.Element {
     };
   }, []);
 
-  // Prepare Featured Artworks and map them to Photo objects
-  const photos: Photo[] = useMemo(() => {
-    const featuredWorks: Artwork[] = shuffle(getArtworks()).slice(0, 3);
-    return featuredWorks.map((artwork) => ({
-      src: artwork.image,
-      width: artwork.width ?? 800,
-      height: artwork.height ?? 600,
-      title: artwork.title ?? "",
-      size: artwork.size ?? "",
-      description: artwork.description ?? "",
-      year: artwork.year ?? "",
-    }));
-  }, []);
-
   return (
     <div className="pt-16">
       {/* HERO SECTION */}
@@ -133,37 +96,37 @@ export default function Home(): JSX.Element {
 
         {/* Hero Content */}
         <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <div className="space-y-6 mb-12 animate__animated animate__fadeInDown">
+          <div className="space-y-4 sm:space-y-6 mb-8 sm:mb-12 animate__animated animate__fadeInDown">
             <div className="inline-block relative">
               <div className="absolute inset-0 blur-2xl opacity-30 bg-gradient-brand" />
-              <h1 className="relative text-6xl sm:text-7xl md:text-8xl font-bold heading-gradient leading-tight">
+              <h1 className="relative text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold heading-gradient leading-tight">
                 Dara Gallopin
               </h1>
             </div>
-            <div className="flex items-center justify-center gap-4">
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-accent to-transparent" />
-              <p className="text-accent tracking-[0.3em] font-medium text-sm sm:text-base">
+            <div className="flex items-center justify-center gap-2 sm:gap-4">
+              <div className="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent via-accent to-transparent" />
+              <p className="text-accent tracking-[0.2em] sm:tracking-[0.3em] font-medium text-xs sm:text-sm md:text-base">
                 INTERDISCIPLINARY ARTIST
               </p>
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent via-accent to-transparent" />
+              <div className="h-[1px] w-8 sm:w-12 bg-gradient-to-r from-transparent via-accent to-transparent" />
             </div>
           </div>
 
-          <div className="max-w-3xl mx-auto mb-16">
+          <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
             <p
-              className={`text-2xl sm:text-3xl text-foreground/90 font-light mb-12 animate__animated ${
+              className={`text-lg sm:text-2xl md:text-3xl text-foreground/90 font-light mb-8 sm:mb-12 animate__animated ${
                 isVisible ? "animate__fadeInUp animate__delay-1s" : ""
               }`}
             >
-              <span className="text-foreground/90">Swiss-Iranian Artist</span>
-              <span className="text-accent mx-3">•</span>
-              <span className="text-foreground/90">Global Explorer</span>
-              <span className="text-accent mx-3">•</span>
-              <span className="text-foreground/90">Visual Storyteller</span>
+              <span className="text-foreground/90 block sm:inline">Swiss-Iranian Artist</span>
+              <span className="text-accent mx-2 sm:mx-3 hidden sm:inline">•</span>
+              <span className="text-foreground/90 block sm:inline">Global Explorer</span>
+              <span className="text-accent mx-2 sm:mx-3 hidden sm:inline">•</span>
+              <span className="text-foreground/90 block sm:inline">Visual Storyteller</span>
             </p>
-            <div className="h-[120px] flex items-center justify-center backdrop-blur-sm rounded-lg">
+            <div className="h-[120px] flex items-center justify-center backdrop-blur-sm rounded-lg px-3 sm:px-6">
               <p
-                className={`text-xl sm:text-2xl text-foreground/90 italic max-w-2xl mx-auto px-6 transition-all duration-500 font-light animate__animated ${
+                className={`text-lg sm:text-xl md:text-2xl text-foreground/90 italic max-w-2xl mx-auto transition-all duration-500 font-light animate__animated ${
                   isVisible ? "animate__fadeIn animate__delay-2s" : ""
                 }`}
               >
@@ -191,8 +154,8 @@ export default function Home(): JSX.Element {
             </Button>
           </div>
 
-          <div className="mt-16 animate__animated animate__fadeIn animate__delay-2s">
-            <div className="inline-flex flex-wrap justify-center gap-4 text-muted-foreground text-base tracking-wider bg-card/30 backdrop-blur-sm px-8 py-3 rounded-full">
+          <div className="mt-12 sm:mt-16 animate__animated animate__fadeIn animate__delay-2s">
+            <div className="inline-flex flex-wrap justify-center gap-2 sm:gap-4 text-muted-foreground text-sm sm:text-base tracking-wider bg-card/30 backdrop-blur-sm px-4 sm:px-8 py-2 sm:py-3 rounded-full">
               {["Geneva", "Beijing", "New York", "Bali"].map((location, index) => (
                 <Fragment key={location}>
                   <span className="hover:text-accent transition-colors cursor-default">
@@ -211,42 +174,8 @@ export default function Home(): JSX.Element {
         </div>
       </header>
 
-      {/* FEATURED WORKS SECTION */}
-      <main className="max-w-7xl mx-auto text-center mb-12 py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-card">
-        <div className="mb-12">
-          <h2 className="text-4xl font-bold text-accent mb-6">Featured Works</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Discover a selection of my most impactful pieces, each telling its own unique story
-          </p>
-        </div>
-
-        <PhotoGallery photos={photos} isLoading={isLoading} />
-
-        <div className="mt-12 text-center">
-          <Button
-            asChild
-            variant="secondary"
-            className="dark:text-accent-foreground group"
-          >
-            <Link href="/gallery" className="flex items-center">
-              Explore All Works
-              <svg
-                className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </Link>
-          </Button>
-        </div>
-      </main>
+      {/* Featured Works Section */}
+      <FeaturedWorks isLoading={isLoading} />
     </div>
   );
 }

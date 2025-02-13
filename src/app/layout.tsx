@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={`font-inter antialiased min-h-screen flex flex-col bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <Navbar />
-          <div className="flex-1 relative z-0">
+          <div className="flex-1 relative z-0 w-full max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8">
             {children}
           </div>
           <Footer />

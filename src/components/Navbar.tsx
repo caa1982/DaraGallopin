@@ -55,16 +55,17 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${navClasses}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${navClasses} md:fixed md:top-0 md:left-0`}
       role="navigation"
       aria-label="Main navigation"
+      style={{ position: '-webkit-sticky' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center space-x-3 text-2xl sm:text-2xl md:text-3xl font-bold logo-font transition-transform duration-300 group"
+            className="flex items-center space-x-2 lg:space-x-3 text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold logo-font transition-transform duration-300 group"
             aria-label="Go to homepage"
           >
             <Image
@@ -72,7 +73,7 @@ const Navbar = () => {
               alt="Dara Gallopin Logo"
               width={40}
               height={40}
-              className="w-auto h-6 md:h-7"
+              className="w-auto h-5 md:h-6 lg:h-7"
             />
             <span className="text-foreground group-hover:text-accent transition-colors transform group-hover:scale-105">
               DARA GALLOPIN
@@ -80,12 +81,12 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-6">
             {navLinks.slice(0, -1).map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 transition-colors duration-300 group ${
+                className={`relative px-2 lg:px-4 py-2 text-sm lg:text-base transition-colors duration-300 group ${
                   pathname === link.href
                     ? 'text-accent'
                     : isScrolled
@@ -105,7 +106,8 @@ const Navbar = () => {
             <Button
               asChild
               variant={isScrolled ? 'default' : 'outline'}
-              className={!isScrolled ? 'hover:text-text hover:border-accent' : ''}
+              className={`text-sm lg:text-base ${!isScrolled ? 'hover:text-text hover:border-accent' : ''}`}
+              size="sm"
             >
               <Link href={navLinks[4].href}>{navLinks[4].label}</Link>
             </Button>

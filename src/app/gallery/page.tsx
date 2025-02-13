@@ -23,16 +23,25 @@ export default function GalleryPage() {
   }));
 
   return (
-    <div className="container mx-auto px-6 sm:px-12 md:px-24 min-h-screen pt-24">
-      <PhotoGallery 
-      photos={photos}
-      isLoading={isLoading}
-      columns={(containerWidth) => {
-        if (containerWidth < 640) return 1;
-        if (containerWidth < 1024) return 2;
-        return 3;
-      }}
-      />
+    <div className="min-h-screen pt-16 sm:pt-24 pb-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="text-center mb-8 sm:mb-12">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">My Life Work</h1>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
+            Explore my collection of artworks spanning various techniques and inspirations
+          </p>
+        </div>
+        <PhotoGallery 
+          photos={photos}
+          isLoading={isLoading}
+          columns={(containerWidth) => {
+            if (containerWidth < 500) return 1;
+            if (containerWidth < 768) return 2;
+            if (containerWidth < 1280) return 3;
+            return 4;
+          }}
+        />
+      </div>
     </div>
   );
 }
