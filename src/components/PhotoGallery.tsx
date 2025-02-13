@@ -27,14 +27,12 @@ interface Photo {
 interface PhotoGalleryProps {
   photos: Photo[];
   isLoading?: boolean;
-  onPhotoClick?: (index: number) => void;
   columns?: (containerWidth: number) => number;
 }
 
 export default function PhotoGallery({ 
   photos, 
   isLoading = false, 
-  onPhotoClick,
   columns = (containerWidth) => {
     if (containerWidth < 500) return 1;
     if (containerWidth < 900) return 2;
@@ -120,7 +118,6 @@ export default function PhotoGallery({
           zoomInMultiplier: 2,
           doubleTapDelay: 300,
           doubleClickDelay: 300,
-          wheelZoomRatio: 0.2,
         }}
         render={{
           iconPrev: () => <div className="text-white text-2xl px-4 py-2 cursor-pointer select-none">‹</div>,
@@ -128,7 +125,6 @@ export default function PhotoGallery({
         }}
         styles={{
           container: { backgroundColor: "rgba(0, 0, 0, .95)" },
-          slideImage: { maxHeight: "88vh" },
           slide: { width: "auto", maxWidth: "100%" }
         }}
         animation={{ fade: 300 }}
