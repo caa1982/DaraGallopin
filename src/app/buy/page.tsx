@@ -25,7 +25,7 @@ const marketplaces = [
     name: "NFT Bazl",
     description: "Innovative marketplace bridging traditional and digital art worlds.",
     url: "https://market.nftbazl.com/Dara-Gallopin",
-    type: "traditional"
+    type: "digital"
   },
   {
     name: "Foundation",
