@@ -173,10 +173,20 @@ export default function Home(): JSX.Element {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 animate__animated animate__fadeInUp animate__delay-3s">
-            <Button asChild size="lg" className="w-full sm:w-auto btn-primary">
+            <Button
+              asChild
+              size="lg"
+              variant="default"
+              className="w-full sm:w-auto text-accent-foreground"
+            >
               <Link href="/gallery">Explore Gallery</Link>
             </Button>
-            <Button asChild size="lg" className="w-full sm:w-auto btn-secondary">
+            <Button
+              asChild
+              size="lg"
+              variant="secondary"
+              className="w-full sm:w-auto dark:text-accent-foreground"
+            >
               <Link href="/about">About the Artist</Link>
             </Button>
           </div>
@@ -213,7 +223,11 @@ export default function Home(): JSX.Element {
         <PhotoGallery photos={photos} isLoading={isLoading} />
 
         <div className="mt-12 text-center">
-          <Button asChild className="btn-secondary group">
+          <Button
+            asChild
+            variant="secondary"
+            className="dark:text-accent-foreground group"
+          >
             <Link href="/gallery" className="flex items-center">
               Explore All Works
               <svg

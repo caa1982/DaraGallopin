@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 function useScrolled(threshold = 10) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -108,24 +109,27 @@ const Navbar = () => {
             >
               <Link href={navLinks[4].href}>{navLinks[4].label}</Link>
             </Button>
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Toggle (burger) - hidden on desktop */}
-          <Button
-            onClick={() => setIsOpen((prev) => !prev)}
-            variant="ghost"
-            size="icon"
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-            className="md:hidden"
-          >
-            {isOpen ? (
-              <FaTimes className="h-6 w-6" aria-hidden="true" />
-            ) : (
-              <FaBars className="h-6 w-6" aria-hidden="true" />
-            )}
-          </Button>
+          {/* Mobile Menu Controls */}
+          <div className="flex items-center space-x-2 md:hidden">
+            <ThemeToggle />
+            <Button
+              onClick={() => setIsOpen((prev) => !prev)}
+              variant="ghost"
+              size="icon"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+            >
+              {isOpen ? (
+                <FaTimes className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <FaBars className="h-6 w-6" aria-hidden="true" />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
 

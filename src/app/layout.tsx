@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
+import { ThemeProvider } from 'next-themes'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
@@ -27,13 +28,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className={`font-inter antialiased min-h-screen flex flex-col bg-background`}>
-        <Navbar />
-        <div className="flex-1 relative z-0">
-          {children}
-        </div>
-        <Footer />
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body className={`font-inter antialiased min-h-screen flex flex-col bg-background text-foreground`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          <div className="flex-1 relative z-0">
+            {children}
+          </div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
