@@ -59,6 +59,7 @@ function TimelineItem({ year, text, detail }: TimelineItemProps) {
 interface Exhibition {
   year: string;
   title: string;
+  description: string;
 }
 
 interface ExhibitionCardProps {
@@ -84,8 +85,7 @@ function ExhibitionCard({ title, exhibitions }: ExhibitionCardProps) {
                 <span>{ex.title}</span>
               </div>
               <p className="text-sm text-foreground/80 leading-relaxed">
-                A significant exhibition showcasing works exploring cultural identity and
-                contemporary expression.
+                {ex.description}
               </p>
             </div>
           </div>
@@ -148,46 +148,25 @@ export default function About() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-[300px] sm:h-[400px] rounded-md">
-            <div className="space-y-4 sm:space-y-6 text-foreground leading-relaxed pr-4 text-sm sm:text-base">
+        <ScrollArea className="h-[300px] sm:h-[400px] rounded-md">
+          <div className="space-y-4 sm:space-y-6 text-foreground leading-relaxed pr-4 text-sm sm:text-base">
               <p>
-                Dara Gallopin is an interdisciplinary artist of Swiss-Iranian heritage, born in 1982
-                and raised in Geneva, Switzerland. He has spent his adult years living in diverse
-                locations across the globe—including England, China, New York, and Western Europe—and
-                is currently based in Bali.
+                I am an interdisciplinary artist of Swiss-Iranian heritage, born in 1982 and raised in Geneva, Switzerland. Throughout my adult life, I've lived in diverse locations across the globe—including England, China, New York, and Western Europe—and I am currently based in Ukraine.
               </p>
               <p>
-                This intercultural and nomadic life has imbued Gallopin with a deep appreciation for
-                diversity and a boundless approach to his practice. His multidisciplinary art ranges
-                from geometric abstract drawings influenced by his formal training at L’Ecole Cantonale
-                d’Art de Lausanne (BFA) to sculptures such as <em>Hoverboard (2009)</em> and{' '}
-                <em>Never Give Up (2010)</em>, as well as more recent figurative paintings.
+                This intercultural and nomadic existence has endowed me with a profound appreciation for diversity and an expansive approach to my artistic practice. My multidisciplinary work encompasses geometric abstract drawings, influenced by my formal training at L’École Cantonale d’Art de Lausanne (ECAL), where I earned my Bachelor of Fine Arts degree. My oeuvre also includes sculptures such as <em>Hoverboard</em> (2009) and <em>Never Give Up</em> (2010), as well as more recent figurative paintings.
               </p>
               <p>
-                Each piece in his diverse body of work reflects narratives of multi-dimensional
-                growth. Gallopin’s cultural identity is that of a modern nomad—working
-                indiscriminately with any tools and technologies available, across diverse media, and
-                living across borders and languages.
+                Each piece in my diverse body of work reflects narratives of multi-dimensional growth. Identifying as a modern nomad, I utilize a wide array of tools and technologies, working across various media and transcending borders and languages.
               </p>
               <p>
-                In works like <em>Untitled (Triptych) 2020</em>, he references, subverts, and
-                reimagines his past pieces—explosive splashes from older drawings now “liquefied,”
-                bridging 2D and 3D processes. By integrating techniques ranging from plasticine
-                models and bronze casts to 3D scanning, painting, and digital manipulation, he
-                crafts surreal yet dynamic compositions that blur the line between fantasy, the
-                virtual, and the human.
+                In works like <em>Untitled (Triptych)</em> (2020), I reference, subvert, and reimagine my past pieces—transforming explosive splashes from earlier drawings into "liquefied" forms that bridge 2D and 3D processes. By integrating techniques ranging from plasticine models and bronze casts to 3D scanning, painting, and digital manipulation, I craft surreal yet dynamic compositions that blur the lines between fantasy, the virtual, and the human.
               </p>
               <blockquote className="border-l-4 border-accent pl-4 italic text-foreground/90">
-                &ldquo;I&rsquo;m like a scuba diver who dives into the abyss of my subconscious...
-                Life only has value if shared. Art is about relationships, multi-layered... My art is
-                open to all.&rdquo;
+                &ldquo;I&rsquo;m like a scuba diver who dives into the abyss of my subconscious... Life only has value if shared. Art is about relationships, multi-layered... My art is open to all.&rdquo;
               </blockquote>
               <p>
-                His forward-moving practice envisions a future that is both expansive and inclusive,
-                unifying elements from minimalism, digital technology, and figurative painting.
-                Consistent with an ethos of continual progression and learning, Gallopin’s process
-                remains “democratic” and open—a testament to art’s power to unify rather than
-                discriminate.
+                My forward-moving practice envisions a future that is both expansive and inclusive, unifying elements from minimalism, digital technology, and figurative painting. Consistent with an ethos of continual progression and learning, my process remains “democratic” and open—a testament to art’s power to unify rather than discriminate.
               </p>
             </div>
           </ScrollArea>
