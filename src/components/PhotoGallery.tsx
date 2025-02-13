@@ -52,7 +52,7 @@ export default function PhotoGallery({
   );
 
   const renderNextImage = (
-    { alt = "", title = "", sizes }: { alt?: string; title?: string; sizes?: string },
+    { alt = "", title = "" }: { alt?: string; title?: string },
     { photo, width, height }: { photo: Photo; width: number; height: number }
   ) => {
     return (

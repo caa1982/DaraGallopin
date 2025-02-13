@@ -124,7 +124,7 @@ export default function Contact() {
         <div className="text-center mb-8 sm:mb-10">
           <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Contact Me</h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have questions or just want to say hello? I'd love to hear from you.
+            {"Have questions or just want to say hello? I'd love to hear from you."}
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
@@ -287,7 +287,7 @@ export default function Contact() {
                       className="animate__animated animate__fadeIn mt-4 p-3 sm:p-4 border border-accent bg-accent/10 rounded-lg text-center text-sm sm:text-base"
                       role="alert"
                     >
-                      Thank you for your message! I'll get back to you soon.
+                      {"Thank you for your message! I'll get back to you soon."}
                     </div>
                   )}
                 </form>
