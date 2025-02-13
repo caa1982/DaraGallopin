@@ -2,19 +2,17 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      screens: {
+        'xs': '475px',
+      },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -42,7 +40,8 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        }
+        },
+        ring: "hsl(var(--ring))"
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -102,17 +101,27 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    function ({ matchUtilities, theme }: any) {
+    ({ addUtilities }: { addUtilities: (utilities: Record<string, any>) => void }) => {
+      addUtilities({
+        '.aspect-w-1': { aspectRatio: '1' },
+        '.aspect-w-2': { aspectRatio: '2' },
+        '.aspect-w-3': { aspectRatio: '3' },
+        '.aspect-w-4': { aspectRatio: '4' },
+        '.aspect-h-1': { aspectRatio: '1' },
+        '.aspect-h-2': { aspectRatio: '2' },
+        '.aspect-h-3': { aspectRatio: '3' },
+        '.aspect-h-4': { aspectRatio: '4' },
+      })
+    },
+    ({ matchUtilities, theme }: { matchUtilities: (utilities: Record<string, { textShadow: string }>, options?: Record<string, unknown>) => void; theme: (path: string) => unknown }) => {
       matchUtilities(
         {
-          'text-shadow': (value: string) => ({
-            textShadow: value,
-          }),
+          'text-shadow': (value: string): { textShadow: string } => {
+            return { textShadow: value };
+          },
         },
         { values: theme('textShadow') }
       )
-    },
-    require("tailwindcss-animate")
+    }
   ],
 } satisfies Config;

@@ -12,11 +12,8 @@ interface FeaturedWorksProps {
 export default function FeaturedWorks({ isLoading }: FeaturedWorksProps): JSX.Element {
   const photos = useMemo(() => {
     const allWorks = getArtworks();
-    // Get all featured works
     const featuredWorks = allWorks.filter(artwork => artwork.isFeatured);
     
-    // If we have more than 3 featured works, shuffle and take 3
-    // If we have less than 3, add shuffled non-featured works
     const selectedWorks = 
       featuredWorks.length > 3 
         ? shuffle(featuredWorks).slice(0, 3)
@@ -38,10 +35,10 @@ export default function FeaturedWorks({ isLoading }: FeaturedWorksProps): JSX.El
   }, []);
 
   return (
-    <main className="max-w-7xl mx-auto text-center mb-8 sm:mb-12 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-card">
+    <main className="max-w-7xl mx-auto mt-12 text-center mb-8 sm:mb-12 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-card to-background">
       <div className="mb-8 sm:mb-12">
-        <h2 className="text-3xl sm:text-4xl font-bold text-accent mb-4 sm:mb-6">Featured Works</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-base sm:text-lg">
+        <h2 className="text-2xl xs:text-3xl sm:text-4xl font-bold text-accent mb-4 sm:mb-6">Featured Works</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto text-sm xs:text-base sm:text-lg px-2">
           Discover a selection of my most impactful pieces, each telling its own unique story
         </p>
       </div>
@@ -50,13 +47,14 @@ export default function FeaturedWorks({ isLoading }: FeaturedWorksProps): JSX.El
           photos={photos} 
           isLoading={isLoading}
           columns={(containerWidth) => {
-            if (containerWidth < 640) return 1;
-            if (containerWidth < 1024) return 2;
+            if (containerWidth < 475) return 1; // xs breakpoint
+            if (containerWidth < 640) return 2; // sm breakpoint
+            if (containerWidth < 1024) return 3; // lg breakpoint
             return 3;
           }}
         />
       </div>
-      <div className="mt-12 text-center">
+      <div className="p-6 text-center">
         <Button
           asChild
           variant="secondary"

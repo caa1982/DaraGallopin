@@ -63,7 +63,7 @@ export default function PhotoGallery({
             src={photo.src}
             alt={alt || "Artwork"}
             title={title}
-            sizes="(max-width: 400px) 100vw, (max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes="(max-width: 475px) 95vw, (max-width: 640px) 45vw, (max-width: 1024px) 30vw, 25vw"
             quality={85}
             loading="lazy"
             placeholder="blur"
@@ -75,13 +75,13 @@ export default function PhotoGallery({
         </div>
   
         <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-transparent to-transparent dark:from-background/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-          <div className="p-3 sm:p-4 w-full bg-card/70 dark:bg-card/90 backdrop-blur-sm rounded-b-lg">
-            {photo.title && <h1 className="font-semibold text-foreground text-sm sm:text-base">{photo.title}</h1>}
-            {photo.description && <h3 className="text-xs sm:text-sm text-foreground/90">{photo.description}</h3>}
+          <div className="p-2 xs:p-3 sm:p-4 w-full bg-card/70 dark:bg-card/90 backdrop-blur-sm rounded-b-lg">
+            {photo.title && <h1 className="font-semibold text-foreground text-xs xs:text-sm sm:text-base">{photo.title}</h1>}
+            {photo.description && <h3 className="text-xs xs:text-sm text-foreground/90">{photo.description}</h3>}
             {(photo.size || photo.year) && (
               <div className="text-xs mt-1 space-x-2">
-                {photo.size && <span className="text-muted-foreground">{photo.size}</span>}
-                {photo.year && <span className="text-muted-foreground">{photo.year}</span>}
+                {photo.size && <span className="text-muted-foreground text-[10px] xs:text-xs">{photo.size}</span>}
+                {photo.year && <span className="text-muted-foreground text-[10px] xs:text-xs">{photo.year}</span>}
               </div>
             )}
           </div>
