@@ -23,6 +23,7 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/gallery', label: 'Gallery' },
+  { href: '/buy', label: 'Where to Buy' },
   { href: '/contact', label: 'Get in Touch' },
 ];
 
@@ -105,7 +106,7 @@ const Navbar = () => {
               variant={isScrolled ? 'default' : 'outline'}
               className={!isScrolled ? 'hover:text-text hover:border-accent' : ''}
             >
-              <Link href={navLinks[3].href}>{navLinks[3].label}</Link>
+              <Link href={navLinks[4].href}>{navLinks[4].label}</Link>
             </Button>
           </div>
 

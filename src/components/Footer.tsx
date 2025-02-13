@@ -7,6 +7,7 @@ const navigationLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/gallery', label: 'Gallery' },
+  { href: '/buy', label: 'Where to Buy' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -15,11 +16,19 @@ const socialLinks = [
   { href: 'https://x.com/Daragallopin', label: 'Twitter', icon: FaXTwitter },
 ];
 
+const marketplaceLinks = [
+  { href: 'https://www.saatchiart.com/', label: 'Saatchi Art' },
+  { href: 'https://www.artfinder.com/', label: 'ArtFinder' },
+  { href: 'https://www.singulart.com/', label: 'Singulart' },
+  { href: 'https://opensea.io/', label: 'OpenSea' },
+  { href: 'https://foundation.app/', label: 'Foundation' },
+];
+
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-r from-background to-card text-foreground py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 text-center md:text-left">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 text-center md:text-left">
           {/* Brand & Contact */}
           <div className="flex flex-col items-center md:items-start space-y-4">
             <Link 
@@ -59,6 +68,30 @@ const Footer = () => {
                 <Link
                   key={link.href}
                   href={link.href}
+                  className="relative px-1 group text-sm md:text-base text-muted-foreground hover:text-foreground"
+                >
+                  {link.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Buy Art Links */}
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="text-xl font-semibold mb-4 relative inline-block 
+                           after:content-[''] after:absolute after:-bottom-1 
+                           after:left-1/2 md:after:left-0 after:translate-x-[-50%] 
+                           md:after:translate-x-0 after:w-10 after:h-1 after:bg-accent">
+              Buy Art
+            </h3>
+            <nav className="flex flex-col space-y-2">
+              {marketplaceLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="relative px-1 group text-sm md:text-base text-muted-foreground hover:text-foreground"
                 >
                   {link.label}
