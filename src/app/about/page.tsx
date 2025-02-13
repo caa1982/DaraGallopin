@@ -121,7 +121,7 @@ export default function About() {
   return (
     <main className="px-4 md:px-6 lg:px-8 text-foreground pb-16 sm:pb-24 space-y-6 sm:space-y-8 lg:space-y-12">
       {/* Hero / Top Section */}
-      <section className="relative overflow-hidden pb-6 pt-16 sm:pt-24 animate__animated animate__fadeIn">
+      <section className="relative overflow-hidden mt-16 sm:mt-24 animate__animated animate__fadeIn">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
           {/* Artist Image with Hover Effect */}
           <div className="w-full max-w-sm lg:max-w-md mx-auto lg:mx-0">
