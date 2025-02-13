@@ -10,9 +10,9 @@ const marketplaces = [
     type: "traditional"
   },
   {
-    name: "NFT Bazl",
-    description: "Innovative marketplace bridging traditional and digital art worlds.",
-    url: "https://market.nftbazl.com/Dara-Gallopin",
+    name: "ArtFinder",
+    description: "Online marketplace connecting independent artists with art lovers.",
+    url: "https://www.artfinder.com/",
     type: "traditional"
   },
   {
@@ -22,10 +22,10 @@ const marketplaces = [
     type: "traditional"
   },
   {
-    name: "OpenSea",
-    description: "The world's largest NFT marketplace.",
-    url: "https://opensea.io/",
-    type: "digital"
+    name: "NFT Bazl",
+    description: "Innovative marketplace bridging traditional and digital art worlds.",
+    url: "https://market.nftbazl.com/Dara-Gallopin",
+    type: "traditional"
   },
   {
     name: "Foundation",
