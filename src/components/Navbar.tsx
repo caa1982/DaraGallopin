@@ -103,7 +103,7 @@ const Navbar = () => {
             <Button
               asChild
               variant={isScrolled ? 'default' : 'outline'}
-              className={!isScrolled ? 'hover:text-accent hover:border-accent' : ''}
+              className={!isScrolled ? 'hover:text-text hover:border-accent' : ''}
             >
               <Link href={navLinks[3].href}>{navLinks[3].label}</Link>
             </Button>
