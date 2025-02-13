@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { shuffle } from "lodash";
 import { Button } from "@/components/ui/button";
-import LoadingSpinner from "@/components/LoadingSpinner";
 import { getArtworks } from "@/data/artworks";
 import PhotoGallery from "@/components/PhotoGallery";
 import "animate.css";

@@ -296,7 +296,7 @@ export default function Contact() {
           <AlertDialogHeader>
             <AlertDialogTitle>Message Sent Successfully!</AlertDialogTitle>
             <AlertDialogDescription>
-              Thank you for reaching out. I'll get back to you as soon as possible.
+              {"Thank you for reaching out. I'll get back to you as soon as possible."}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
