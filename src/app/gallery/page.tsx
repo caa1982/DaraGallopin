@@ -28,7 +28,7 @@ export default function GalleryPage() {
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">{"My Life's Work"}</h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore my collection of artworks, showcasing a variety of techniques and inspirations.
+          Explore my curated collection of artworks that span a variety of techniques and inspirations.
           </p>
         </div>
         <PhotoGallery 

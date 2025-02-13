@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import 'animate.css';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,7 +22,7 @@ interface ImageWithHoverProps {
 
 function ImageWithHover({ src, alt, priority = false }: ImageWithHoverProps) {
   return (
-    <div className="relative w-full max-w-md h-72 sm:h-96 rounded-xl overflow-hidden group shadow-lg dark:shadow-white/10">
+    <div className="relative w-full max-w-md h-72 sm:h-96 rounded-xl overflow-hidden group shadow-lg dark:shadow-white/10 animate__animated animate__fadeIn">
       <Image
         src={src}
         alt={alt}
@@ -120,7 +121,7 @@ export default function About() {
   return (
     <main className="px-4 md:px-6 lg:px-8 text-foreground pb-16 sm:pb-24 space-y-6 sm:space-y-8 lg:space-y-12">
       {/* Hero / Top Section */}
-      <section className="relative overflow-hidden pb-6 pt-16 sm:pt-24">
+      <section className="relative overflow-hidden pb-6 pt-16 sm:pt-24 animate__animated animate__fadeIn">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
           {/* Artist Image with Hover Effect */}
           <div className="w-full max-w-sm lg:max-w-md mx-auto lg:mx-0">
@@ -141,7 +142,7 @@ export default function About() {
       </section>
 
       {/* Biography Section */}
-      <Card className="max-w-7xl mx-auto">
+      <Card className="max-w-7xl mx-auto animate__animated animate__fadeInUp">
         <CardHeader className="space-y-2">
           <CardTitle className="text-2xl sm:text-3xl font-playfair font-bold text-accent">
             Biography
@@ -174,7 +175,7 @@ export default function About() {
       </Card>
 
       {/* Key Events & Education Timeline */}
-      <section className="max-w-7xl mx-auto py-8 sm:py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
+      <section className="max-w-7xl mx-auto py-8 sm:py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4 animate__animated animate__fadeInUp animate__delay-1s">
         <h2 className="text-2xl sm:text-3xl font-playfair font-bold text-accent mb-4 sm:mb-6">
           Key Events & Education
         </h2>
@@ -186,7 +187,7 @@ export default function About() {
       </section>
 
       {/* Publications */}
-      <section className="max-w-7xl mx-auto py-8 sm:py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4">
+      <section className="max-w-7xl mx-auto py-8 sm:py-10 rounded-xl border border-border/20 bg-card/95 backdrop-blur-sm px-4 animate__animated animate__fadeInUp animate__delay-2s">
         <h2 className="text-2xl sm:text-3xl font-playfair font-bold text-accent mb-4 sm:mb-6">
           Publications
         </h2>
@@ -205,7 +206,7 @@ export default function About() {
       </section>
 
       {/* Exhibitions */}
-      <Card className="max-w-7xl mx-auto">
+      <Card className="max-w-7xl mx-auto animate__animated animate__fadeInUp animate__delay-3s">
         <CardHeader>
           <CardTitle className="text-2xl sm:text-3xl font-playfair font-bold text-accent">
             Exhibitions
@@ -220,7 +221,9 @@ export default function About() {
       </Card>
 
       {/* Recent Works Section */}
-      <RecentWorks isLoading={false} />
+      <div className="animate__animated animate__fadeInUp animate__delay-4s">
+        <RecentWorks isLoading={false} />
+      </div>
     </main>
   );
 }

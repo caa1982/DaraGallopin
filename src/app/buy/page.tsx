@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card"
 import Link from "next/link"
+import 'animate.css';
 
 const marketplaces = [
   {
@@ -43,9 +44,9 @@ const marketplaces = [
 export default function BuyPage() {
   return (
     <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 pb-16 sm:pb-24 min-h-screen">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">Where to Buy</h1>
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 animate__animated animate__fadeIn">Where to Buy</h1>
       
-      <section className="mb-8 sm:mb-12">
+      <section className="mb-8 sm:mb-12 animate__animated animate__fadeInUp">
         <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Traditional Art</h2>
         <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 max-w-3xl">
           Discover my original paintings and traditional artworks through these premier art marketplaces. 
@@ -55,8 +56,8 @@ export default function BuyPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {marketplaces
             .filter(market => market.type === "traditional")
-            .map(market => (
-              <Card key={market.name} className="p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 dark:shadow-white/5 dark:hover:shadow-white/10">
+            .map((market, index) => (
+              <Card key={market.name} className={`p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 dark:shadow-white/5 dark:hover:shadow-white/10 animate__animated animate__fadeIn animate__delay-${index}s`}>
                 <h3 className="text-lg sm:text-xl font-semibold mb-2">{market.name}</h3>
                 <p className="text-sm sm:text-base text-muted-foreground mb-4">{market.description}</p>
                 <Link 
@@ -73,10 +74,10 @@ export default function BuyPage() {
         </div>
       </section>
 
-      <section>
+      <section className="animate__animated animate__fadeInUp animate__delay-1s">
         <div className="relative">
           {/* Coming Soon Overlay */}
-          <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] z-10 flex items-center justify-center">
+          <div className="absolute inset-0 bg-background/60 backdrop-blur-[2px] z-10 flex items-center justify-center animate__animated animate__pulse animate__infinite animate__slower">
             <div className="text-center px-4">
               <h3 className="text-2xl sm:text-3xl font-bold mb-2">Coming Soon</h3>
               <p className="text-sm sm:text-base text-muted-foreground">Digital art collection launching shortly</p>
@@ -94,8 +95,8 @@ export default function BuyPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {marketplaces
               .filter(market => market.type === "digital")
-              .map(market => (
-                <Card key={market.name} className="p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 dark:shadow-white/5 dark:hover:shadow-white/10">
+              .map((market, index) => (
+                <Card key={market.name} className={`p-4 sm:p-6 hover:shadow-lg transition-shadow duration-300 dark:shadow-white/5 dark:hover:shadow-white/10 animate__animated animate__fadeIn animate__delay-${index + 2}s`}>
                   <h3 className="text-lg sm:text-xl font-semibold mb-2">{market.name}</h3>
                   <p className="text-sm sm:text-base text-muted-foreground mb-4">{market.description}</p>
                   <Link 
