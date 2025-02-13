@@ -4,52 +4,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: theme('colors.primary.DEFAULT');
-  --text: theme('colors.text');
-  --primary: theme('colors.primary.DEFAULT');
-  --primary-light: theme('colors.primary.light');
-  --primary-dark: theme('colors.primary.dark');
-  --secondary: theme('colors.secondary.DEFAULT');
-  --secondary-light: theme('colors.secondary.light');
-  --secondary-dark: theme('colors.secondary.dark');
-  --accent: theme('colors.primary_accent.DEFAULT');
-  --accent-light: theme('colors.primary_accent.light');
-  --accent-dark: theme('colors.primary_accent.dark');
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: theme('colors.primary.dark');
-    --text: theme('colors.text');
-    --primary: theme('colors.primary.DEFAULT');
-    --primary-light: theme('colors.primary.light');
-    --primary-dark: theme('colors.primary.dark');
-    --secondary: theme('colors.secondary.DEFAULT');
-    --secondary-light: theme('colors.secondary.light');
-    --secondary-dark: theme('colors.secondary.dark');
-    --accent: theme('colors.primary_accent.DEFAULT');
-    --accent-light: theme('colors.primary_accent.light');
-    --accent-dark: theme('colors.primary_accent.dark');
-  }
-}
-
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+    
+    --card: 0 0% 98%;
+    --card-foreground: 224 71% 4%;
+    
+    --popover: 0 0% 98%;
+    --popover-foreground: 224 71% 4%;
+    
+    --primary: 220 14% 30%;
+    --primary-foreground: 210 20% 98%;
+    
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 220 14% 30%;
+    
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 14% 46%;
+    
+    --accent: 181 65% 56%;
+    --accent-foreground: 210 20% 98%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+    
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 181 65% 56%;
+    
+    --radius: 0.5rem;
+  }
+
   html {
     @apply scroll-smooth;
   }
   
   body {
-    @apply bg-primary text-text antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
   }
-
-  p {
-    @apply leading-relaxed;
-  }
-
+  
   h1, h2, h3, blockquote {
     font-family: 'Playfair Display', serif;
+  }
+
+  * {
+    @apply border-border;
   }
 }
 
@@ -59,14 +61,15 @@
   }
   
   .section-card {
-    @apply bg-white/95 backdrop-blur-sm p-8 rounded-xl shadow-lg 
-           border border-primary/10 transition-all duration-300
-           hover:shadow-xl hover:border-primary_accent/20;
+    @apply bg-card/95 backdrop-blur-sm p-8 rounded-xl shadow-sm 
+           border border-border/10 transition-all duration-300
+           hover:shadow-md hover:border-accent/20;
   }
 
   .heading-gradient {
-    @apply bg-gradient-to-r from-primary via-secondary to-secondary_accent
+    @apply bg-gradient-to-br from-foreground via-accent to-foreground
            bg-clip-text text-transparent;
+    text-shadow: 0 0 80px rgba(var(--accent), 0.2);
   }
 
   .text-gradient {
@@ -74,35 +77,39 @@
   }
 
   .timeline-item {
-    @apply relative pl-8 pb-8 border-l-2 border-primary_accent/30 last:border-0;
+    @apply relative pl-8 pb-8 border-l-2 border-accent/30 last:border-0;
   }
 
   .timeline-item::before {
     content: '';
-    @apply absolute left-[-9px] top-0 w-4 h-4 bg-white 
-           border-2 border-primary_accent rounded-full;
+    @apply absolute left-[-9px] top-0 w-4 h-4 bg-background 
+           border-2 border-accent rounded-full;
   }
 
   .btn-primary {
-    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
-           bg-gradient-to-r from-primary to-secondary text-text
-           hover:shadow-lg hover:shadow-primary_accent/20 
+    @apply bg-accent text-foreground hover:bg-accent/90
+           shadow-sm hover:shadow-md transition-all duration-300
            active:transform active:scale-95;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
-           bg-white text-primary border-2 border-primary/20
-           hover:border-primary_accent hover:text-secondary
+    @apply bg-card text-foreground border border-border
+           hover:bg-accent/10 hover:text-accent hover:border-accent
+           shadow-sm hover:shadow-md transition-all duration-300
            active:transform active:scale-95;
+  }
+  
+  .btn-ghost {
+    @apply text-foreground hover:bg-accent/10 hover:text-accent
+           transition-all duration-300;
   }
 
   .skill-bar {
-    @apply h-2.5 bg-primary/10 rounded-full overflow-hidden;
+    @apply h-2.5 bg-muted rounded-full overflow-hidden;
   }
 
   .skill-progress {
-    @apply h-full bg-gradient-to-r from-primary_accent to-secondary_accent rounded-full
+    @apply h-full bg-gradient-to-r from-accent to-secondary rounded-full
            transition-all duration-1000 ease-out;
   }
 
@@ -112,7 +119,7 @@
   }
 
   .gallery-overlay {
-    @apply absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent
+    @apply absolute inset-0 bg-gradient-to-t from-background/90 to-transparent
            flex items-end p-4 opacity-0 transition-opacity duration-300
            hover:opacity-100;
   }
@@ -124,6 +131,19 @@
 
   .artwork-card {
     @apply aspect-w-3 aspect-h-4 relative;
+  }
+
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+    font-variation-settings: 'opsz' 32;
+  }
+  
+  .bg-gradient-brand {
+    @apply bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 }
 
@@ -160,6 +180,15 @@
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-in-out;
 }
@@ -170,66 +199,4 @@
 
 .animate-scale-in {
   animation: scaleIn 0.4s ease-out forwards;
-}
-
-.text-gradient {
-  @apply bg-gradient-brand bg-clip-text text-transparent;
-}
-
-/* Timeline styles */
-.timeline-item {
-  @apply relative pl-8 pb-8 border-l-2 border-primary_accent/30 last:border-0;
-}
-
-.timeline-item::before {
-  content: '';
-  @apply absolute left-[-9px] top-0 w-4 h-4 bg-white 
-         border-2 border-primary_accent rounded-full;
-}
-
-/* Button styles */
-.btn-primary {
-  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
-         bg-gradient-to-r from-primary to-secondary text-text
-         hover:shadow-lg hover:shadow-primary_accent/20 
-         active:transform active:scale-95;
-}
-
-.btn-secondary {
-  @apply px-6 py-3 rounded-lg font-medium transition-all duration-300
-         bg-white text-primary border-2 border-primary/20
-         hover:border-primary_accent hover:text-secondary
-         active:transform active:scale-95;
-}
-
-/* Skill bar animations */
-.skill-bar {
-  @apply h-2.5 bg-primary/10 rounded-full overflow-hidden;
-}
-
-.skill-progress {
-  @apply h-full bg-gradient-to-r from-primary_accent to-secondary_accent rounded-full
-         transition-all duration-1000 ease-out;
-}
-
-/* Gallery preview */
-.gallery-preview {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
-}
-
-.gallery-item {
-  @apply relative overflow-hidden rounded-lg
-         transition-transform duration-300 hover:scale-105;
-}
-
-.gallery-overlay {
-  @apply absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent
-         flex items-end p-4 opacity-0 transition-opacity duration-300
-         hover:opacity-100;
-}
-
-/* Card hover effects */
-.hover-card {
-  @apply transition-all duration-300
-         hover:shadow-lg hover:-translate-y-1;
 }

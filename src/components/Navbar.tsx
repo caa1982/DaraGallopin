@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Button } from "@/components/ui/button";
 
 // Custom hook to track scroll position
 function useScrolled(threshold = 10) {
@@ -53,14 +54,8 @@ const Navbar = () => {
 
   // Navbar background & shadow based on scroll position
   const navClasses = isScrolled
-    ? 'bg-primary/95 shadow-lg backdrop-blur-sm'
-    : 'bg-primary-dark/90 backdrop-blur-sm';
-
-  // Button style for the call-to-action link
-  const buttonClass = (scrolled = false) =>
-    scrolled
-      ? 'bg-primary_accent hover:bg-primary_accent-light text-primary shadow-lg hover:shadow-xl'
-      : 'border-2 border-text text-text hover:bg-primary_accent hover:text-primary hover:border-primary_accent';
+    ? 'bg-background/95 shadow-lg backdrop-blur-sm'
+    : 'bg-background/90 backdrop-blur-sm';
 
   return (
     <nav
@@ -83,7 +78,7 @@ const Navbar = () => {
               height={40}
               className="w-auto h-6 md:h-7"
             />
-            <span className="text-text group-hover:text-primary_accent transition-colors transform group-hover:scale-105">
+            <span className="text-foreground group-hover:text-accent transition-colors transform group-hover:scale-105">
               DARA GALLOPIN
             </span>
           </Link>
@@ -96,37 +91,36 @@ const Navbar = () => {
                 href={link.href}
                 className={`relative px-4 py-2 transition-colors duration-300 group ${
                   pathname === link.href
-                    ? 'text-primary_accent'
+                    ? 'text-accent'
                     : isScrolled
-                    ? 'text-text/80 hover:text-text'
-                    : 'text-text/90 hover:text-primary_accent'
+                    ? 'text-foreground/80 hover:text-foreground'
+                    : 'text-foreground/90 hover:text-accent'
                 }`}
                 aria-current={pathname === link.href ? 'page' : undefined}
               >
                 {link.label}
                 <span
-                  className={`absolute bottom-0 left-1/2 h-0.5 bg-primary_accent transition-all duration-300 transform -translate-x-1/2 ${
+                  className={`absolute bottom-0 left-1/2 h-0.5 bg-accent transition-all duration-300 transform -translate-x-1/2 ${
                     pathname === link.href ? 'w-1/2' : 'w-0 group-hover:w-1/2'
                   }`}
                 />
               </Link>
             ))}
-            <Link
-              href={navLinks[3].href}
-              className={`ml-4 px-6 py-2 rounded-full transition-transform duration-300 hover:scale-105 active:scale-95 ${buttonClass(isScrolled)}`}
+            <Button 
+              asChild
+              className={`${isScrolled ? 'btn-primary' : 'bg-transparent border border-foreground/20 text-foreground hover:text-accent hover:border-accent'}`}
             >
-              {navLinks[3].label}
-            </Link>
+              <Link href={navLinks[3].href}>
+                {navLinks[3].label}
+              </Link>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <Button
             onClick={() => setIsOpen((prev) => !prev)}
-            className={`md:hidden p-2 rounded-lg transition-colors duration-300 active:scale-90 ${
-              isScrolled
-                ? 'text-text/80 hover:text-text hover:bg-primary_accent/10'
-                : 'text-text hover:text-primary_accent hover:bg-text/10'
-            }`}
+            className="btn-ghost md:hidden"
+            size="icon"
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
@@ -136,13 +130,13 @@ const Navbar = () => {
             ) : (
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             )}
-          </button>
+          </Button>
         </div>
       </div>
 
       {/* Mobile Menu Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-background/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={closeMenu}
@@ -157,21 +151,21 @@ const Navbar = () => {
         }`}
       >
         <div className="mx-4 rounded-lg overflow-hidden shadow-lg">
-          <div className="px-4 py-3 space-y-2 bg-primary-dark/95 backdrop-blur-md">
+          <div className="px-4 py-3 space-y-2 bg-card backdrop-blur-md">
             {navLinks.map((link) => (
-              <Link
+              <Button
                 key={link.href}
-                href={link.href}
-                className={`block px-4 py-3 rounded-lg transition-colors duration-300 active:scale-95 ${
-                  pathname === link.href
-                    ? 'text-primary_accent bg-primary_accent/10'
-                    : 'text-text/80 hover:text-text hover:bg-primary_accent/10'
-                }`}
-                onClick={closeMenu}
-                aria-current={pathname === link.href ? 'page' : undefined}
+                asChild
+                className={`w-full justify-start ${pathname === link.href ? 'btn-primary' : 'btn-ghost'}`}
               >
-                {link.label}
-              </Link>
+                <Link
+                  href={link.href}
+                  onClick={closeMenu}
+                  aria-current={pathname === link.href ? 'page' : undefined}
+                >
+                  {link.label}
+                </Link>
+              </Button>
             ))}
           </div>
         </div>

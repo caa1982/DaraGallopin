@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,39 +10,55 @@ export default {
   theme: {
     extend: {
       colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: '#1C39BB',    
-          light: '#4158D0',
-          dark: '#162EA0',
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: '#0067A5',    
-          light: '#0077BE',
-          dark: '#00598C',
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
-        primary_accent: {
-          DEFAULT: '#57C5C6',  
-          light: '#6ED1D2',
-          dark: '#4EB1B2',
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        secondary_accent: {
-          DEFAULT: '#AE6A0B',    
-          light: '#C27710',
-          dark: '#955B09',
-        },  
-        text: '#FFFFF0',   
-        
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-art': 'linear-gradient(45deg, #1C39BB 0%, #AE6A0B 100%)',
-        'gradient-brand': 'linear-gradient(135deg, #1C39BB 0%, #0067A5 50%, #AE6A0B 100%)',
+        'gradient-art': 'linear-gradient(45deg, hsl(var(--primary)) 0%, hsl(var(--destructive)) 100%)',
+        'gradient-brand': 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--destructive)) 100%)',
         'gradient-shine': 'linear-gradient(60deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%)'
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       animation: {
         'color-shift': 'color-shift 8s ease infinite',
-        'shine': 'shine 2s linear infinite',
-        'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        shine: 'shine 2s linear infinite',
+        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
       },
       keyframes: {
         'color-shift': {
@@ -52,28 +69,36 @@ export default {
           '50%': {
             'background-size': '200% 200%',
             'background-position': 'right center'
+          }
+        },
+        shine: {
+          '0%': {
+            'background-position': '-200% center'
           },
+          '100%': {
+            'background-position': '200% center'
+          }
         },
-        'shine': {
-          '0%': { 'background-position': '-200% center' },
-          '100%': { 'background-position': '200% center' }
-        },
-        'pulse': {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '.5' }
+        pulse: {
+          '0%, 100%': {
+            opacity: '1'
+          },
+          '50%': {
+            opacity: '.5'
+          }
         }
       },
       aspectRatio: {
-        'square': '1 / 1',
+        square: '1 / 1'
       },
       textShadow: {
         sm: '0 1px 2px rgba(0, 0, 0, 0.25)',
         DEFAULT: '0 2px 4px rgba(0, 0, 0, 0.35)',
-        lg: '0 2px 6px rgba(0, 0, 0, 0.45)',
+        lg: '0 2px 6px rgba(0, 0, 0, 0.45)'
       },
       boxShadow: {
-        glass: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)',
-      },
+        glass: 'inset 0 1px 1px rgba(255, 255, 255, 0.1)'
+      }
     },
   },
   plugins: [
@@ -88,5 +113,6 @@ export default {
         { values: theme('textShadow') }
       )
     },
+    require("tailwindcss-animate")
   ],
 } satisfies Config;

@@ -2,9 +2,25 @@
 
 import { useForm } from 'react-hook-form'
 import { useForm as useFormspree } from '@formspree/react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import LoadingSpinner from '@/components/LoadingSpinner'
 import { FaInstagram, FaXTwitter } from 'react-icons/fa6'
+import { Button } from "@/components/ui/button"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog"
 
 interface ContactForm {
   name: string
@@ -17,12 +33,14 @@ const socialLinks = [
   {
     name: 'Instagram',
     icon: <FaInstagram size={20} />,
-    href: 'https://www.instagram.com/daragallopin/'
+    href: 'https://www.instagram.com/daragallopin/',
+    description: 'Follow me on Instagram for daily updates, behind-the-scenes content, and work in progress.'
   },
   {
     name: 'X',
     icon: <FaXTwitter size={20} />,
-    href: 'https://x.com/Daragallopin'
+    href: 'https://x.com/Daragallopin',
+    description: 'Join the conversation on X (Twitter) for art insights and exhibition announcements.'
   }
 ]
 
@@ -53,13 +71,12 @@ function InputField({
   rows = 5
 }: InputFieldProps) {
   const baseClasses =
-    'w-full px-4 py-2 rounded-lg border border-text/20 bg-primary-dark/10 text-text placeholder:text-text/60 focus:outline-none focus:ring-2 focus:ring-primary_accent focus:border-transparent transition duration-200'
-  // If there's an error, add a red (or secondary accent) border
-  const errorClass = error ? 'border-secondary_accent-dark' : ''
+    'w-full px-4 py-2 rounded-lg border bg-background/50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition duration-200'
+  const errorClass = error ? 'border-destructive' : 'border-input'
 
   return (
     <div className="space-y-1">
-      <label htmlFor={id} className="block text-sm font-medium mb-1">
+      <label htmlFor={id} className="block text-sm font-medium mb-1 text-foreground">
         {label}
       </label>
       {isTextArea ? (
@@ -82,7 +99,7 @@ function InputField({
         />
       )}
       {error && (
-        <p className="mt-1 text-sm text-secondary_accent-dark" role="alert">
+        <p className="mt-1 text-sm text-destructive" role="alert">
           {error}
         </p>
       )}
@@ -95,69 +112,107 @@ export default function Contact() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting, isDirty }
   } = useForm<ContactForm>()
 
   const [formspreeState, sendToFormspree] = useFormspree('your-formspree-id')
   const [showSuccess, setShowSuccess] = useState(false)
+  const [showUnsavedDialog, setShowUnsavedDialog] = useState(false)
+  const [isNavigating, setIsNavigating] = useState(false)
+
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isDirty && !isNavigating) {
+        e.preventDefault()
+        e.returnValue = ''
+      }
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [isDirty, isNavigating])
 
   const onSubmit = async (data: ContactForm) => {
+    setIsNavigating(true)
     const submissionData = {
       ...data,
-      [data.email]: data.email // Compatibility with FieldValues
+      [data.email]: data.email
     }
     await sendToFormspree(submissionData)
     if (formspreeState.succeeded) {
       reset()
       setShowSuccess(true)
-      setTimeout(() => setShowSuccess(false), 5000)
     }
   }
 
+  const handleClose = () => {
+    setShowSuccess(false)
+  }
+
   return (
-    <div className="min-h-screen text-text pt-24 pb-20">
+    <div className="min-h-screen pt-24 pb-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Page Heading */}
         <div className="text-center mb-10">
           <h1 className="text-4xl font-bold mb-4">Contact Me</h1>
-          <p className="text-lg text-text/80">
+          <p className="text-lg text-muted-foreground">
             Have questions or just want to say hello? I’d love to hear from you.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Contact Info */}
           <div className="animate__animated animate__fadeInLeft">
-            <div className="bg-primary-dark/20 border border-white/20 p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
               <div className="space-y-6">
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Location</h3>
-                  <p className="text-text/80">Bali, Indonesia</p>
+                  <p className="text-muted-foreground">Bali, Indonesia</p>
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-2">Email</h3>
-                  <a
-                    href="mailto:contact@daragallopin.com"
-                    className="text-secondary_accent-light hover:text-primary_accent transition-colors"
-                  >
-                    contact@daragallopin.com
-                  </a>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <a
+                        href="mailto:contact@daragallopin.com"
+                        className="text-accent hover:text-accent/80 transition-colors"
+                      >
+                        contact@daragallopin.com
+                      </a>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <div className="space-y-2">
+                        <h4 className="text-sm font-semibold">Direct Email Contact</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Feel free to reach out directly for inquiries about commissions, exhibitions, or collaborations.
+                          I typically respond within 24-48 hours.
+                        </p>
+                      </div>
+                    </HoverCardContent>
+                  </HoverCard>
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-4">Follow Me</h3>
                   <div className="flex items-center space-x-6">
                     {socialLinks.map(link => (
-                      <a
-                        key={link.name}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-primary_accent-light transition-colors"
-                        aria-label={`Follow on ${link.name}`}
-                      >
-                        {link.icon}
-                      </a>
+                      <HoverCard key={link.name}>
+                        <HoverCardTrigger asChild>
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-foreground hover:text-accent transition-colors"
+                            aria-label={`Follow on ${link.name}`}
+                          >
+                            {link.icon}
+                          </a>
+                        </HoverCardTrigger>
+                        <HoverCardContent className="w-80">
+                          <div className="space-y-2">
+                            <h4 className="text-sm font-semibold">Follow on {link.name}</h4>
+                            <p className="text-sm text-muted-foreground">{link.description}</p>
+                          </div>
+                        </HoverCardContent>
+                      </HoverCard>
                     ))}
                   </div>
                 </div>
@@ -165,9 +220,8 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="animate__animated animate__fadeInRight">
-            <div className="bg-primary-dark/20 border border-white/20 p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                 <InputField
@@ -208,10 +262,10 @@ export default function Contact() {
                   rows={5}
                 />
 
-                <button
+                <Button
                   type="submit"
                   disabled={isSubmitting || formspreeState.submitting}
-                  className="w-full bg-primary_accent text-text py-3 px-6 rounded-lg font-medium shadow-sm hover:shadow-md transition-colors duration-200 disabled:opacity-60 focus:ring-2 focus:ring-offset-2 focus:ring-secondary_accent inline-flex items-center justify-center"
+                  className="w-full btn-primary"
                 >
                   {isSubmitting || formspreeState.submitting ? (
                     <div className="flex items-center">
@@ -221,11 +275,11 @@ export default function Contact() {
                   ) : (
                     'Send Message'
                   )}
-                </button>
+                </Button>
 
                 {showSuccess && (
                   <div
-                    className="animate__animated animate__fadeIn mt-4 p-4 border border-primary_accent-dark/30 bg-primary_accent-light/10 rounded-lg text-center text-primary_accent-dark"
+                    className="animate__animated animate__fadeIn mt-4 p-4 border border-accent bg-accent/10 rounded-lg text-center"
                     role="alert"
                   >
                     Thank you for your message! I’ll get back to you soon.
@@ -236,6 +290,44 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
+      <AlertDialog open={showSuccess} onOpenChange={handleClose}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Message Sent Successfully!</AlertDialogTitle>
+            <AlertDialogDescription>
+              Thank you for reaching out. I'll get back to you as soon as possible.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={handleClose}>
+              Close
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <AlertDialog open={showUnsavedDialog} onOpenChange={setShowUnsavedDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+            <AlertDialogDescription>
+              You have unsaved changes. Are you sure you want to leave this page?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="btn-ghost">Stay</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                setIsNavigating(true)
+              }}
+              className="btn-primary"
+            >
+              Leave
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }

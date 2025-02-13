@@ -28,8 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className={`font-inter antialiased min-h-screen flex flex-col`}>
-        <div className="fixed inset-0 bg-gradient-to-b from-primary via-blue-800 to-primary -z-10" />
+      <body className={`font-inter antialiased min-h-screen flex flex-col bg-background`}>
         <Navbar />
         <div className="flex-1 relative z-0">
           {children}
