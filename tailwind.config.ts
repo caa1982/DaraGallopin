@@ -100,28 +100,5 @@ export default {
       }
     },
   },
-  plugins: [
-    ({ addUtilities }: { addUtilities: (utilities: Record<string, any>) => void }) => {
-      addUtilities({
-        '.aspect-w-1': { aspectRatio: '1' },
-        '.aspect-w-2': { aspectRatio: '2' },
-        '.aspect-w-3': { aspectRatio: '3' },
-        '.aspect-w-4': { aspectRatio: '4' },
-        '.aspect-h-1': { aspectRatio: '1' },
-        '.aspect-h-2': { aspectRatio: '2' },
-        '.aspect-h-3': { aspectRatio: '3' },
-        '.aspect-h-4': { aspectRatio: '4' },
-      })
-    },
-    ({ matchUtilities, theme }: { matchUtilities: (utilities: Record<string, { textShadow: string }>, options?: Record<string, unknown>) => void; theme: (path: string) => unknown }) => {
-      matchUtilities(
-        {
-          'text-shadow': (value: string): { textShadow: string } => {
-            return { textShadow: value };
-          },
-        },
-        { values: theme('textShadow') }
-      )
-    }
-  ],
+  plugins: [],
 } satisfies Config;
