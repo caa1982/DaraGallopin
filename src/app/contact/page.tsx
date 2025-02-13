@@ -131,7 +131,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column: Contact Info */}
           <div className="animate__animated animate__fadeInLeft">
-            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md dark:shadow-white/5 dark:hover:shadow-white/10 transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Get in Touch</h2>
               <div className="space-y-6">
                 <div>
@@ -194,7 +194,7 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <div className="animate__animated animate__fadeInRight">
-            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="bg-card border-border p-6 sm:p-8 rounded-lg shadow-sm hover:shadow-md dark:shadow-white/5 dark:hover:shadow-white/10 transition-shadow duration-300">
               <h2 className="text-2xl font-bold mb-6">Send a Message</h2>
               <Form {...form}>
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

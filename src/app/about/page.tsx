@@ -22,7 +22,7 @@ interface ImageWithHoverProps {
 
 function ImageWithHover({ src, alt, priority = false }: ImageWithHoverProps) {
   return (
-    <div className="relative w-full max-w-md h-72 sm:h-96 rounded-xl overflow-hidden group shadow-lg">
+    <div className="relative w-full max-w-md h-72 sm:h-96 rounded-xl overflow-hidden group shadow-lg dark:shadow-white/10">
       <Image
         src={src}
         alt={alt}
@@ -30,7 +30,7 @@ function ImageWithHover({ src, alt, priority = false }: ImageWithHoverProps) {
         priority={priority}
         className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-black/30 transition-colors duration-700 ease-in-out group-hover:bg-black/50" />
+      <div className="absolute inset-0 bg-black/30 dark:bg-black/40 transition-colors duration-700 ease-in-out group-hover:bg-black/50" />
     </div>
   );
 }

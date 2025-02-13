@@ -56,7 +56,7 @@ export default function BuyPage() {
           {marketplaces
             .filter(market => market.type === "traditional")
             .map(market => (
-              <Card key={market.name} className="p-6 hover:shadow-lg transition-shadow">
+              <Card key={market.name} className="p-6 hover:shadow-lg transition-shadow dark:shadow-white/5 dark:hover:shadow-white/10">
                 <h3 className="text-xl font-semibold mb-2">{market.name}</h3>
                 <p className="text-muted-foreground mb-4">{market.description}</p>
                 <Link 
@@ -93,7 +93,7 @@ export default function BuyPage() {
             {marketplaces
               .filter(market => market.type === "digital")
               .map(market => (
-                <Card key={market.name} className="p-6 hover:shadow-lg transition-shadow">
+                <Card key={market.name} className="p-6 hover:shadow-lg transition-shadow dark:shadow-white/5 dark:hover:shadow-white/10">
                   <h3 className="text-xl font-semibold mb-2">{market.name}</h3>
                   <p className="text-muted-foreground mb-4">{market.description}</p>
                   <Link 

@@ -55,7 +55,24 @@ export default function PhotoGallery({
     { photo, width, height }: { photo: Photo; width: number; height: number }
   ) => {
     return (
-      <div className="group relative w-full overflow-hidden rounded-lg shadow-lg cursor-pointer">
+      <div
+        className="
+          group
+          relative
+          w-full
+          overflow-hidden
+          rounded-lg
+          cursor-pointer
+          transition-shadow
+          duration-300
+          shadow-md
+          shadow-black/20
+          hover:shadow-xl
+          hover:shadow-black/40
+          dark:shadow-white/10
+          dark:hover:shadow-white/30
+        "
+      >
         <div style={{ aspectRatio: `${width} / ${height}` }} className="relative">
           <Image
             fill
@@ -69,11 +86,34 @@ export default function PhotoGallery({
             blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
               '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="hsl(var(--background))"/></svg>'
             ).toString("base64")}`}
-            className="transition-transform duration-300 ease-in-out group-hover:scale-105"
+            className="
+              transition-transform
+              duration-300
+              ease-in-out
+              group-hover:scale-105
+            "
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-          <div className="p-4 w-full bg-card/70 backdrop-blur-sm rounded-b-lg">
+  
+        {/* Overlay with title and description */}
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-t
+            from-background/95
+            via-transparent
+            to-transparent
+            dark:from-background/95
+            opacity-0
+            group-hover:opacity-100
+            transition-opacity
+            duration-300
+            flex
+            items-end
+          "
+        >
+          <div className="p-4 w-full bg-card/70 dark:bg-card/90 backdrop-blur-sm rounded-b-lg">
             {photo.title && <h1 className="font-semibold text-foreground">{photo.title}</h1>}
             {photo.description && <h3 className="text-sm text-foreground/90">{photo.description}</h3>}
             {photo.size && <h4 className="text-xs text-muted-foreground mt-1">{photo.size}</h4>}
@@ -83,6 +123,8 @@ export default function PhotoGallery({
       </div>
     );
   };
+  
+  
 
   if (isLoading) {
     return (

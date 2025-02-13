@@ -113,7 +113,7 @@ export default function Home(): JSX.Element {
           }}
         >
           <div
-            className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/80 to-background/95 backdrop-blur-sm z-10"
+            className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/80 to-background/95 backdrop-blur-sm dark:backdrop-blur-[2px] z-10"
             style={{ transform: "scale(1.2)" }}
           />
           <Image
@@ -125,7 +125,7 @@ export default function Home(): JSX.Element {
             sizes="100vw"
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
-              '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="#1a1a1a"/></svg>'
+              '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><rect width="100%" height="100%" fill="hsl(var(--background))"/></svg>'
             ).toString("base64")}`}
             className="object-cover scale-125 transform transition-transform duration-300"
           />
