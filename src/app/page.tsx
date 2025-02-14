@@ -172,17 +172,17 @@ export default function Home(): JSX.Element {
               asChild
               size="lg"
               variant="default"
-              className="w-full sm:w-auto text-sm sm:text-base text-accent-foreground"
+              className="w-full sm:w-auto text-black sm:text-base"
             >
-              <Link href="/gallery">Explore Gallery</Link>
+              <Link href="/about">About the Artist</Link>
             </Button>
             <Button
               asChild
               size="lg"
-              variant="secondary"
-              className="w-full sm:w-auto text-sm sm:text-base dark:text-accent-foreground"
+              variant="outline"
+              className="w-full sm:w-auto hover:text-black sm:text-base dark:bg-transparent dark:text-accent"
             >
-              <Link href="/about">About the Artist</Link>
+              <Link href="/buy">Where to Buy</Link>
             </Button>
           </div>
 
